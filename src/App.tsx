@@ -4,7 +4,7 @@ import { createGlobalStyle } from "styled-components";
 import { ThemeProvider } from "styled-components";
 import Nav from "./components/Nav";
 import styled from "styled-components";
-
+import Main from "./pages/Main";
 const GlobalStyle = createGlobalStyle`
   * {
     margin: 0;
@@ -23,12 +23,18 @@ const GlobalStyle = createGlobalStyle`
 `;
 const NavWrapper = styled.div``;
 
+const MainContent = styled.main`
+  width: calc(100% - 260px);
+  margin-left: 260px;
+`;
 const App = () => {
   return (
     <NavWrapper>
       <GlobalStyle />
       <Nav />
-      <Outlet />
+      <MainContent>
+        <Outlet />
+      </MainContent>
     </NavWrapper>
   );
 };

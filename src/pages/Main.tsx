@@ -2,9 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const Container = styled.main`
-  width: 100%;
-  height: 100vh;
-  background: #000;
+  background: #777;
   color: #fff;
   &::before {
     content: "";
@@ -18,6 +16,8 @@ const Contents = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 10px;
+  width: 100%;
   height: 100vh;
 `;
 const Header = styled.div`
@@ -39,7 +39,7 @@ const Button = styled.button`
   padding: 12px 40px;
   border: 1px solid #20c997;
   border-radius: 20px;
-  background: #000;
+  background: #777;
   transition: all 0.3s;
   cursor: pointer;
   &:hover {

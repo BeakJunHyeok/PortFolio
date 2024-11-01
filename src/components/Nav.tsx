@@ -8,31 +8,53 @@ const Container = styled.div`
   width: 260px;
   height: 100vh;
   position: fixed;
-  justify-content: center;
+  display: flex;
+  flex-direction: column;
   align-items: center;
+  padding: 20px 0;
 `;
-
+const Header = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 21px;
+`;
 const ProfillImg = styled.img`
-  width: 60px;
-  height: 60px;
+  width: 160px;
+  height: 160px;
   border: none;
   border-radius: 50%;
-  flex-wrap: 1;
+  margin: 0 auto;
+  margin-bottom: 10px;
 `;
 
 const Navbar = styled.ul`
+  font-size: 16px;
+  font-weight: bold;
   display: flex;
   flex-direction: column;
-  flex-wrap: 2;
+  justify-content: center;
+  align-items: center;
+  margin: auto 0;
+  gap: 30px;
+`;
+
+const Icons = styled.div`
+  display: flex;
+  gap: 8px;
+  cursor: pointer;
 `;
 
 const Nav = () => {
   return (
     <Container>
-      <ProfillImg src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSt3DCbI2D3dd9d5foUaeITIVjicguWURtF4w&s" />
+      <Header>
+        <ProfillImg src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSt3DCbI2D3dd9d5foUaeITIVjicguWURtF4w&s" />
+        Baek Jun Hyeok
+      </Header>
       <Navbar>
         <li>
-          <Link to="/">Main</Link>
+          <Link to="/">Home</Link>
         </li>
         <li>
           <Link to="/about">About</Link>
@@ -50,6 +72,12 @@ const Nav = () => {
           <Link to="/contact">Contact</Link>
         </li>
       </Navbar>
+      <Icons>
+        <div>🎈</div>
+        <div>🎆</div>
+        <div>🎇</div>
+        <div>🧨</div>
+      </Icons>
     </Container>
   );
 };
