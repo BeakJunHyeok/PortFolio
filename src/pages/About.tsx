@@ -13,12 +13,13 @@ const Header = styled.h1`
   display: flex;
   justify-content: center;
   margin-top: 60px;
+  position: relative;
   &::before {
     content: "ABOUT ME";
     position: absolute;
-    top: 25%;
+    top: 50%;
     left: 50%;
-    transform: translate(-30%, -53%);
+    transform: translate(-50%, -53%);
     font-size: 120px;
     font-weight: bold;
     color: rgba(222, 227, 228, 0.3);

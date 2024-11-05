@@ -12,6 +12,9 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 20px 0;
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 const Header = styled.div`
   display: flex;
@@ -37,6 +40,7 @@ const Navbar = styled.ul`
   align-items: center;
   margin: auto 0;
   gap: 30px;
+  cursor: pointer;
 `;
 
 const Icons = styled.div`
@@ -45,7 +49,10 @@ const Icons = styled.div`
   cursor: pointer;
 `;
 
-const Nav = () => {
+const Nav: React.FC = () => {
+  const handleScroll = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+  };
   return (
     <Container>
       <Header>
@@ -53,24 +60,12 @@ const Nav = () => {
         Baek Jun Hyeok
       </Header>
       <Navbar>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/about">About</Link>
-        </li>
-        <li>
-          <Link to="/whatido">What I Do</Link>
-        </li>
-        <li>
-          <Link to="/resume">Resume</Link>
-        </li>
-        <li>
-          <Link to="/project">Project</Link>
-        </li>
-        <li>
-          <Link to="/contact">Contact</Link>
-        </li>
+        <li onClick={() => handleScroll("main")}>Home</li>
+        <li onClick={() => handleScroll("about")}>About</li>
+        <li onClick={() => handleScroll("whatido")}>What I Do</li>
+        <li onClick={() => handleScroll("resume")}>Resume</li>
+        <li onClick={() => handleScroll("project")}>Project</li>
+        <li onClick={() => handleScroll("contact")}>Contact</li>
       </Navbar>
       <Icons>
         <div>🎈</div>
