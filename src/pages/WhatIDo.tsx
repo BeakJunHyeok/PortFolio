@@ -9,11 +9,17 @@ const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   background: #f8f9fa;
+  border: 1px solid #f00;
+  @media (max-width: 990px) {
+    width: 100%;
+    height: 100%;
+  }
 `;
 const Header = styled.div`
-  margin-top: 60px;
+  margin: 50px 0;
   width: 100%;
   font-size: 40px;
+  font-weight: bold;
   display: flex;
   justify-content: center;
   position: relative;
@@ -24,25 +30,23 @@ const Header = styled.div`
     top: 50%;
     left: 50%;
     opacity: 0.4;
-    transform: translate(-50%, -53%);
-    font-size: 120px;
+    transform: translate(-50%, -50%);
+    font-size: 130px;
     font-weight: bold;
     color: #dee3e4;
+    z-index: -1;
   }
 `;
 const Contents = styled.div`
   display: grid;
+  max-width: 1320px;
   grid-template-columns: repeat(2, 1fr);
   gap: 40px;
-  padding: 100px 200px;
-  @media (max-width: 1024px) {
-    grid-template-columns: repeat(2, 1fr);
-    padding: 80px 100px;
-  }
-  @media (max-width: 768px) {
+  padding: 30px 50px;
+  @media (max-width: 990px) {
     display: grid;
+    gap: 10px;
     grid-template-columns: 1fr;
-    padding: 50px 20px;
   }
 `;
 

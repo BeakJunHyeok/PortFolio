@@ -30,8 +30,9 @@ const Section = styled.section``;
 const MainContent = styled.main`
   width: calc(100% - 260px);
   margin-left: 260px;
-  @media (max-width: 768px) {
+  @media (max-width: 990px) {
     width: 100%;
+    margin-left: 0;
   }
 `;
 const App = () => {
@@ -49,10 +50,10 @@ const App = () => {
         <Section id="whatido">
           <WhatIDo />
         </Section>
-        {/* <Section id="resume">
+        <Section id="resume">
           <Resume />
         </Section>
-        <Section id="project">
+        {/* <Section id="project">
           <Project />
         </Section>
         <Section id="contact">

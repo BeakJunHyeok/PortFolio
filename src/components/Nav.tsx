@@ -12,7 +12,7 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 20px 0;
-  @media (max-width: 768px) {
+  @media (max-width: 990px) {
     display: none;
   }
 `;

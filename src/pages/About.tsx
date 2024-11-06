@@ -1,39 +1,56 @@
 import React from "react";
 import styled from "styled-components";
 
-const Container = styled.main`
+const Wrapper = styled.main`
   width: 100%;
   height: 100vh;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #f8f9fa;
+  border: 1px solid #f00;
+  @media (max-width: 990px) {
+    width: 100%;
+  }
 `;
-const Header = styled.h1`
+const Header = styled.div`
+  margin: 50px 0;
   width: 100%;
-  font-size: 36px;
+  font-size: 40px;
+  font-weight: bold;
   display: flex;
   justify-content: center;
-  margin-top: 60px;
   position: relative;
+  z-index: 2;
   &::before {
-    content: "ABOUT ME";
+    content: "ABOUT";
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -53%);
-    font-size: 120px;
+    opacity: 0.4;
+    transform: translate(-50%, -50%);
+    font-size: 130px;
     font-weight: bold;
-    color: rgba(222, 227, 228, 0.3);
+    color: #dee3e4;
     z-index: -1;
   }
 `;
 const Content = styled.div`
-  width: 100%;
-  height: 100%;
-  padding: 0 200px;
+  max-width: 1320px;
+  padding: 30px 50px;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 40px;
+  @media (max-width: 990px) {
+    width: 100%;
+    gap: 50px;
+    margin: 0 auto;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 `;
 const LeftContent = styled.div`
   display: flex;
@@ -48,27 +65,34 @@ const RightContent = styled.div`
   flex-direction: column;
   gap: 20px;
   width: 25%;
+  @media (max-width: 990px) {
+    width: 100%;
+    margin: 0 auto;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 `;
 const LeftHeader = styled.h4`
   font-size: 28px;
 `;
+
+const Desc = styled.p``;
+
 const About = () => {
   return (
-    <Container>
+    <Wrapper>
       <Header>About Me</Header>
       <Content>
         <LeftContent>
           <LeftHeader>안녕하세요.</LeftHeader>
-          <div>
+          <Desc>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti
             architecto eius corporis necessitatibus obcaecati praesentium ullam
             quis. Voluptatibus id doloribus, neque officia maiores nemo
             recusandae veniam dolorum adipisci magnam numquam. Lorem, ipsum
             dolor sit amet consectetur adipisicing elit. Quaerat dicta molestiae
-            molestias, dolores iste optio consequuntur rem ab nobis fuga ut,
-            repellendus, veritatis asperiores temporibus voluptates excepturi.
-            Consequuntur, ipsa voluptatum? Lorem ipsum dolor sit amet
-          </div>
+          </Desc>
         </LeftContent>
         <RightContent>
           <div>Name : 백준혁</div>
@@ -77,7 +101,7 @@ const About = () => {
           <div>From : 백준혁</div>
         </RightContent>
       </Content>
-    </Container>
+    </Wrapper>
   );
 };
 

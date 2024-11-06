@@ -8,6 +8,9 @@ const Container = styled.main`
     content: "";
     background: #dee3e4;
   }
+  @media (max-width: 990px) {
+    width: 100%;
+  }
 `;
 
 const Contents = styled.div`
