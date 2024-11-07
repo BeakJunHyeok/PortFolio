@@ -9,7 +9,6 @@ const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   background: #f8f9fa;
-  border: 1px solid #f00;
   @media (max-width: 990px) {
     width: 100%;
     height: 100%;
@@ -24,6 +23,10 @@ const Header = styled.div`
   justify-content: center;
   position: relative;
   z-index: 2;
+  @media (max-width: 430px) {
+    font-size: 32px;
+    margin-bottom: 10px;
+  }
   &::before {
     content: "SKILL";
     position: absolute;
@@ -35,6 +38,12 @@ const Header = styled.div`
     font-weight: bold;
     color: #dee3e4;
     z-index: -1;
+    @media (max-width: 990px) {
+      font-size: 120px;
+    }
+    @media (max-width: 430px) {
+      font-size: 100px;
+    }
   }
 `;
 const Contents = styled.div`
@@ -48,12 +57,19 @@ const Contents = styled.div`
     gap: 10px;
     grid-template-columns: 1fr;
   }
+  @media (max-width: 430px) {
+    padding: 10px;
+  }
 `;
 
 const Content = styled.div`
   display: flex;
   gap: 10px;
   margin-top: 60px;
+  @media (max-width: 430px) {
+    width: 380px;
+    padding-left: 20px;
+  }
 `;
 const Image = styled.div`
   background: #fff;
@@ -64,12 +80,16 @@ const Image = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: 6px;
+  @media (max-width: 430px) {
+  }
 `;
 const Img = styled.img`
   width: 70px;
   height: 70px;
   object-fit: cover;
   border-radius: 6px;
+  @media (max-width: 430px) {
+  }
 `;
 const CardDesc = styled.div`
   display: flex;
@@ -85,6 +105,10 @@ const Name = styled.div`
 const Desc = styled.div`
   font-size: 16px;
   width: 360px;
+  @media (max-width: 430px) {
+    width: 100%;
+    font-size: 14px;
+  }
 `;
 
 const WhatIDo = () => {

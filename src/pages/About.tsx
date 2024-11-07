@@ -9,7 +9,6 @@ const Wrapper = styled.main`
   justify-content: center;
   align-items: center;
   background: #f8f9fa;
-  border: 1px solid #f00;
   @media (max-width: 990px) {
     width: 100%;
   }
@@ -34,6 +33,9 @@ const Header = styled.div`
     font-weight: bold;
     color: #dee3e4;
     z-index: -1;
+    @media (max-width: 990px) {
+      font-size: 80px;
+    }
   }
 `;
 const Content = styled.div`

@@ -4,7 +4,7 @@ import Main from "./pages/Main";
 import About from "./pages/About";
 import WhatIDo from "./pages/WhatIDo";
 import Resume from "./pages/Resume";
-import Project from "./components/Project";
+import Project from "./pages/Project";
 import Contact from "./pages/Contact";
 
 const router = createBrowserRouter([

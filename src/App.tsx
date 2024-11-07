@@ -7,7 +7,7 @@ import Main from "./pages/Main";
 import About from "./pages/About";
 import WhatIDo from "./pages/WhatIDo";
 import Resume from "./pages/Resume";
-import Project from "./components/Project";
+import Project from "./pages/Project";
 import Contact from "./pages/Contact";
 const GlobalStyle = createGlobalStyle`
   * {
@@ -53,10 +53,10 @@ const App = () => {
         <Section id="resume">
           <Resume />
         </Section>
-        {/* <Section id="project">
+        <Section id="project">
           <Project />
         </Section>
-        <Section id="contact">
+        {/* <Section id="contact">
           <Contact />
         </Section> */}
       </MainContent>

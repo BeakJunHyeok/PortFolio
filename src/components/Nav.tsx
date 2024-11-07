@@ -29,6 +29,7 @@ const ProfillImg = styled.img`
   border-radius: 50%;
   margin: 0 auto;
   margin-bottom: 10px;
+  object-fit: cover;
 `;
 
 const Navbar = styled.ul`
@@ -64,7 +65,7 @@ const Nav: React.FC = () => {
         <li onClick={() => handleScroll("about")}>About</li>
         <li onClick={() => handleScroll("whatido")}>What I Do</li>
         <li onClick={() => handleScroll("resume")}>Resume</li>
-        <li onClick={() => handleScroll("project")}>Project</li>
+        <li onClick={() => handleScroll("project")}>My Project</li>
         <li onClick={() => handleScroll("contact")}>Contact</li>
       </Navbar>
       <Icons>
