@@ -1,6 +1,15 @@
-import React from "react";
-import styled from "styled-components";
+import React, { useState } from "react";
+import styled, { keyframes, css } from "styled-components";
 import { Link } from "react-router-dom";
+
+const rotate = keyframes`
+  0% {
+    transform: rotateY(0deg);
+  }
+  100% {
+    transform: rotateY(720deg);
+  }
+`;
 
 const Container = styled.div`
   background: #ddd;
@@ -22,7 +31,7 @@ const Header = styled.div`
   align-items: center;
   font-size: 21px;
 `;
-const ProfillImg = styled.img`
+const ProfillImg = styled.img<{ rotate: boolean }>`
   width: 160px;
   height: 160px;
   border: none;
@@ -30,6 +39,13 @@ const ProfillImg = styled.img`
   margin: 0 auto;
   margin-bottom: 10px;
   object-fit: cover;
+  cursor: pointer;
+  box-shadow: 6px 6px 6px rgba(0, 0, 0, 0.4);
+  ${(props) =>
+    props.rotate &&
+    css`
+      animation: ${rotate} 1s linear;
+    `}
 `;
 
 const Navbar = styled.ul`
@@ -51,13 +67,22 @@ const Icons = styled.div`
 `;
 
 const Nav: React.FC = () => {
+  const [isRotating, setIsRotating] = useState(false);
   const handleScroll = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+  };
+  const handleRotate = () => {
+    setIsRotating(true);
+    setTimeout(() => setIsRotating(false), 1500); // 애니메이션 시간 후에 회전 종료
   };
   return (
     <Container>
       <Header>
-        <ProfillImg src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSt3DCbI2D3dd9d5foUaeITIVjicguWURtF4w&s" />
+        <ProfillImg
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSt3DCbI2D3dd9d5foUaeITIVjicguWURtF4w&s"
+          rotate={isRotating}
+          onClick={handleRotate}
+        />
         Baek Jun Hyeok
       </Header>
       <Navbar>
