@@ -8,8 +8,9 @@ const Wrapper = styled.main`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: #f8f9fa;
+  background: #fff;
   padding: 20px;
+  gap: 20px;
   box-sizing: border-box;
   @media (max-width: 990px) {
     width: 100%;

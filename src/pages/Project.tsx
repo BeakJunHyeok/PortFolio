@@ -9,8 +9,8 @@ const Wrapper = styled.main`
   justify-content: center;
   align-items: center;
   background: #f8f9fa;
-  padding: 20px;
-  box-sizing: border-box;
+  /* padding: 30px 20px; */
+  gap: 20px;
 `;
 
 const Header = styled.h1`
@@ -54,7 +54,7 @@ const FilterButton = styled.button<{ active: boolean }>`
   color: ${(props) => (props.active ? "#28a745" : "#6c757d")};
   cursor: pointer;
   border-bottom: ${(props) => (props.active ? "2px solid #28a745" : "none")};
-
+  transition: all 0.3s;
   &:hover {
     color: #28a745;
   }
@@ -71,7 +71,6 @@ const GridContainer = styled.div`
   box-sizing: border-box;
   margin: 0 auto;
   grid-auto-flow: dense;
-
   & > div:nth-child(1) {
     grid-row: span 1;
     grid-column: span 1;
@@ -116,17 +115,16 @@ const ProjectItem = styled.div`
 const ProjectImage = styled.img`
   width: 100%;
   height: 100%;
-  object-fit: cover;
 `;
 
 const projectsData = [
-  { id: 1, category: "Design", imageUrl: "image1.jpg" },
-  { id: 2, category: "Brand", imageUrl: "image2.jpg" },
-  { id: 3, category: "Photos", imageUrl: "image3.jpg" },
-  { id: 4, category: "Design", imageUrl: "image4.jpg" },
-  { id: 5, category: "Brand", imageUrl: "image5.jpg" },
-  { id: 6, category: "Photos", imageUrl: "image6.jpg" },
-  { id: 7, category: "Photos", imageUrl: "image7.jpg" },
+  { id: 1, category: "Design", imageUrl: "/img/dd.jpg" },
+  { id: 2, category: "Brand", imageUrl: "/img/dd.jpg" },
+  { id: 3, category: "Photos", imageUrl: "/img/dd.jpg" },
+  { id: 4, category: "Design", imageUrl: "/img/dd.jpg" },
+  { id: 5, category: "Brand", imageUrl: "/img/dd.jpg" },
+  { id: 6, category: "Photos", imageUrl: "/img/dd.jpg" },
+  { id: 7, category: "Photos", imageUrl: "/img/dd.jpg" },
   // 추가 이미지 데이터
 ];
 

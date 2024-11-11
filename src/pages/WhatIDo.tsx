@@ -118,10 +118,7 @@ const WhatIDo = () => {
       <Contents>
         <Content>
           <Image>
-            <Img
-              src="https://cdn-icons-png.flaticon.com/512/5968/5968705.png"
-              alt="Icon"
-            />
+            <Img src="/img/figma.png" alt="Icon" />
           </Image>
           <CardDesc>
             <Name>Figma</Name>
@@ -133,10 +130,7 @@ const WhatIDo = () => {
         </Content>
         <Content>
           <Image>
-            <Img
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuFBfBskJw0CLs6VMI3jbaHUntDDMV2KAVQw&s"
-              alt="Icon"
-            />
+            <Img src="/img/reacticon.png" alt="Icon" />
           </Image>
           <CardDesc>
             <Name>Figma</Name>
@@ -148,10 +142,7 @@ const WhatIDo = () => {
         </Content>
         <Content>
           <Image>
-            <Img
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuFBfBskJw0CLs6VMI3jbaHUntDDMV2KAVQw&s"
-              alt="Icon"
-            />
+            <Img src="/img/jsicon.png" />
           </Image>
           <CardDesc>
             <Name>Figma</Name>

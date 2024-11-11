@@ -67,19 +67,27 @@ const Icons = styled.div`
 `;
 
 const Nav: React.FC = () => {
+  const originalImage = "/img/파이리.jfif";
+  const changeImage = "/img/꼬북이.jfif";
+
   const [isRotating, setIsRotating] = useState(false);
+  const [isOriginalImage, setIsOriginalImage] = useState(true);
+
   const handleScroll = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   };
   const handleRotate = () => {
     setIsRotating(true);
-    setTimeout(() => setIsRotating(false), 1500); // 애니메이션 시간 후에 회전 종료
+    setTimeout(() => {
+      setIsRotating(false);
+      setIsOriginalImage(!isOriginalImage); // 이미지 상태를 토글
+    }, 1000); // 애니메이션 시간 후에 회전 종료 및 이미지 변경
   };
   return (
     <Container>
       <Header>
         <ProfillImg
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSt3DCbI2D3dd9d5foUaeITIVjicguWURtF4w&s"
+          src={isOriginalImage ? originalImage : changeImage}
           rotate={isRotating}
           onClick={handleRotate}
         />
