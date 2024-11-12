@@ -9,6 +9,7 @@ import WhatIDo from "./pages/WhatIDo";
 import Resume from "./pages/Resume";
 import Project from "./pages/Project";
 import Contact from "./pages/Contact";
+
 const GlobalStyle = createGlobalStyle`
   * {
     margin: 0;
@@ -25,11 +26,15 @@ const GlobalStyle = createGlobalStyle`
     color: inherit;
   }
 `;
-const NavWrapper = styled.div``;
+const NavWrapper = styled.div`
+  display: flex;
+  width: 100%;
+`;
 const Section = styled.section``;
 const MainContent = styled.main`
   width: calc(100% - 260px);
   margin-left: 260px;
+  overflow-x: hidden;
   @media (max-width: 990px) {
     width: 100%;
     margin-left: 0;

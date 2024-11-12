@@ -1,15 +1,6 @@
 import React, { useState } from "react";
-import styled, { keyframes, css } from "styled-components";
-import { Link } from "react-router-dom";
-
-const rotate = keyframes`
-  0% {
-    transform: rotateY(0deg);
-  }
-  100% {
-    transform: rotateY(720deg);
-  }
-`;
+import styled from "styled-components";
+import { motion } from "framer-motion";
 
 const Container = styled.div`
   background: #ddd;
@@ -31,7 +22,7 @@ const Header = styled.div`
   align-items: center;
   font-size: 21px;
 `;
-const ProfillImg = styled.img<{ rotate: boolean }>`
+const ProfillImg = styled(motion.img)<{ rotate: boolean }>`
   width: 160px;
   height: 160px;
   border: none;
@@ -41,11 +32,6 @@ const ProfillImg = styled.img<{ rotate: boolean }>`
   object-fit: cover;
   cursor: pointer;
   box-shadow: 6px 6px 6px rgba(0, 0, 0, 0.4);
-  ${(props) =>
-    props.rotate &&
-    css`
-      animation: ${rotate} 1s linear;
-    `}
 `;
 
 const Navbar = styled.ul`
@@ -83,6 +69,7 @@ const Nav: React.FC = () => {
       setIsOriginalImage(!isOriginalImage); // 이미지 상태를 토글
     }, 1000); // 애니메이션 시간 후에 회전 종료 및 이미지 변경
   };
+
   return (
     <Container>
       <Header>
@@ -90,6 +77,12 @@ const Nav: React.FC = () => {
           src={isOriginalImage ? originalImage : changeImage}
           rotate={isRotating}
           onClick={handleRotate}
+          initial={{ rotateY: 0 }}
+          animate={{ rotateY: isRotating ? 720 : 0 }} // 동전처럼 회전
+          transition={{
+            duration: 1, // 1초 동안 회전
+            ease: "easeInOut",
+          }}
         />
         Baek Jun Hyeok
       </Header>
