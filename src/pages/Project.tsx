@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { motion, AnimatePresence } from "framer-motion";
 
 const Wrapper = styled.main`
   width: 100%;
@@ -9,7 +10,6 @@ const Wrapper = styled.main`
   justify-content: center;
   align-items: center;
   background: #f8f9fa;
-  /* padding: 30px 20px; */
   gap: 20px;
 `;
 
@@ -18,25 +18,7 @@ const Header = styled.h1`
   width: 100%;
   font-size: 40px;
   font-weight: bold;
-  display: flex;
-  justify-content: center;
-  position: relative;
-  z-index: 2;
-  &::before {
-    content: "PROJECT";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    opacity: 0.4;
-    transform: translate(-50%, -50%);
-    font-size: 120px;
-    font-weight: bold;
-    color: #dee3e4;
-    z-index: -1;
-    @media (max-width: 990px) {
-      font-size: 80px;
-    }
-  }
+  text-align: center;
 `;
 
 const FilterContainer = styled.div`
@@ -101,20 +83,17 @@ const GridContainer = styled.div`
   }
 `;
 
-const ProjectItem = styled.div`
+const ProjectItem = styled(motion.div)`
   background: #fff;
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s;
-  &:hover {
-    transform: scale(1.05);
-  }
 `;
 
 const ProjectImage = styled.img`
   width: 100%;
   height: 100%;
+  object-fit: cover;
 `;
 
 const projectsData = [
@@ -125,8 +104,18 @@ const projectsData = [
   { id: 5, category: "Brand", imageUrl: "/img/dd.jpg" },
   { id: 6, category: "Photos", imageUrl: "/img/dd.jpg" },
   { id: 7, category: "Photos", imageUrl: "/img/dd.jpg" },
-  // 추가 이미지 데이터
 ];
+
+// Variants for animations
+const itemVariants = {
+  hidden: { opacity: 0, scale: 0.8, rotate: -10 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    rotate: 0,
+    transition: { duration: 0.6, type: "spring", stiffness: 100 },
+  },
+};
 
 const Project: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
@@ -151,11 +140,19 @@ const Project: React.FC = () => {
         ))}
       </FilterContainer>
       <GridContainer>
-        {filteredProjects.map((project) => (
-          <ProjectItem key={project.id}>
-            <ProjectImage src={project.imageUrl} alt={project.category} />
-          </ProjectItem>
-        ))}
+        <AnimatePresence>
+          {filteredProjects.map((project) => (
+            <ProjectItem
+              key={project.id}
+              variants={itemVariants}
+              initial="hidden"
+              animate="visible"
+              exit="hidden"
+            >
+              <ProjectImage src={project.imageUrl} alt={project.category} />
+            </ProjectItem>
+          ))}
+        </AnimatePresence>
       </GridContainer>
     </Wrapper>
   );
