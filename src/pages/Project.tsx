@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { motion, AnimatePresence } from "framer-motion";
+import OpenProject from "../components/OpenProject";
 
 const Wrapper = styled.main`
   width: 100%;
@@ -93,32 +94,43 @@ const ProjectItem = styled(motion.div)`
 const ProjectImage = styled.img`
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  cursor: pointer;
 `;
 
 const projectsData = [
   { id: 1, category: "Design", imageUrl: "/img/dd.jpg" },
   { id: 2, category: "Brand", imageUrl: "/img/dd.jpg" },
-  { id: 3, category: "Photos", imageUrl: "/img/dd.jpg" },
+  { id: 3, category: "Photos", imageUrl: "/img/image.png" },
   { id: 4, category: "Design", imageUrl: "/img/dd.jpg" },
-  { id: 5, category: "Brand", imageUrl: "/img/dd.jpg" },
-  { id: 6, category: "Photos", imageUrl: "/img/dd.jpg" },
+  { id: 5, category: "Brand", imageUrl: "/img/꼬북이.jfif" },
+  { id: 6, category: "Photos", imageUrl: "/img/파이리.jfif" },
   { id: 7, category: "Photos", imageUrl: "/img/dd.jpg" },
 ];
 
-// Variants for animations
+// Framer Motion Variants
 const itemVariants = {
-  hidden: { opacity: 0, scale: 0.8, rotate: -10 },
+  hidden: { opacity: 0, scale: 0.5 },
   visible: {
     opacity: 1,
     scale: 1,
-    rotate: 0,
-    transition: { duration: 0.6, type: "spring", stiffness: 100 },
+    transition: {
+      duration: 0.6,
+      ease: "easeOut",
+    },
+  },
+  exit: {
+    opacity: 0,
+    scale: 0.5,
+    transition: {
+      duration: 0.4,
+      ease: "easeIn",
+    },
   },
 };
 
 const Project: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
+  const [selectedProject, setSelectedProject] = useState<string | null>(null);
 
   const filteredProjects =
     selectedCategory === "All"
@@ -147,13 +159,21 @@ const Project: React.FC = () => {
               variants={itemVariants}
               initial="hidden"
               animate="visible"
-              exit="hidden"
+              exit="exit"
+              layout
+              onClick={() => setSelectedProject(project.imageUrl)} // 클릭 시 모달 열기
             >
               <ProjectImage src={project.imageUrl} alt={project.category} />
             </ProjectItem>
           ))}
         </AnimatePresence>
       </GridContainer>
+      {selectedProject && (
+        <OpenProject
+          imageUrl={selectedProject}
+          onClose={() => setSelectedProject(null)} // 모달 닫기
+        />
+      )}
     </Wrapper>
   );
 };
