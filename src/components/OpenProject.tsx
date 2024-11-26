@@ -27,6 +27,14 @@ const Wrapper = styled(motion.div)`
   gap: 30px;
   position: relative;
   z-index: 1001;
+  @media (max-width: 699px) {
+    width: 90%;
+    height: 90%;
+  }
+  @media (max-width: 430px) {
+    width: 90%;
+    gap: 20px;
+  }
 `;
 
 const CloseButton = styled.button`
@@ -44,17 +52,37 @@ const Title = styled.div`
   font-size: 36px;
   font-weight: bold;
   text-align: center;
+  @media (max-width: 430px) {
+    font-size: 28px;
+  }
 `;
 
 const Contents = styled.div`
   width: 100%;
   display: flex;
   gap: 40px;
+  @media (max-width: 699px) {
+    flex-direction: column;
+    width: 100%;
+    height: 0%;
+  }
+  @media (max-width: 430px) {
+    flex-direction: column;
+    gap: 20px;
+  }
 `;
 
 const ImgBox = styled.div`
   width: 50%;
-  height: 630px;
+  height: 610px;
+  @media (max-width: 699px) {
+    height: 320px;
+    width: 100%;
+  }
+  @media (max-width: 430px) {
+    width: 100%;
+    height: 240px;
+  }
 `;
 
 const Img = styled.img`
@@ -62,6 +90,8 @@ const Img = styled.img`
   height: 100%;
   object-fit: cover;
   border-radius: 8px;
+  @media (max-width: 699px) {
+  }
 `;
 
 const Content = styled.div`
@@ -70,15 +100,40 @@ const Content = styled.div`
   flex-direction: column;
   gap: 30px;
   font-size: 16px;
+  font-weight: 500;
+  @media (max-width: 699px) {
+    width: 100%;
+    gap: 20px;
+    font-size: 14px;
+  }
+  @media (max-width: 430px) {
+    display: flex;
+    width: 100%;
+    gap: 16px;
+    font-size: 12px;
+  }
 `;
 
 const Name = styled.div`
   font-size: 24px;
-  font-weight: 500;
+  font-weight: 600;
+  @media (max-width: 699px) {
+    font-size: 20px;
+  }
+  @media (max-width: 430px) {
+    font-size: 16px;
+  }
 `;
 
 const Desc = styled.div`
   font-size: 18px;
+  font-weight: normal;
+  @media (max-width: 699px) {
+    font-size: 16px;
+  }
+  @media (max-width: 430px) {
+    font-size: 12px;
+  }
 `;
 
 const Skill = styled.div``;

@@ -19,7 +19,29 @@ const Header = styled.h1`
   width: 100%;
   font-size: 40px;
   font-weight: bold;
+  display: flex;
+  justify-content: center;
   text-align: center;
+  position: relative;
+  z-index: 2;
+  &::before {
+    content: "MyProject";
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    opacity: 0.5;
+    transform: translate(-50%, -50%);
+    font-size: 120px;
+    font-weight: bold;
+    color: #dee3e4;
+    z-index: -1;
+    @media (max-width: 990px) {
+      font-size: 80px;
+    }
+    @media (max-width: 430px) {
+      font-size: 70px;
+    }
+  }
 `;
 
 const FilterContainer = styled.div`
@@ -94,7 +116,11 @@ const ProjectItem = styled(motion.div)`
 const ProjectImage = styled.img`
   width: 100%;
   height: 100%;
+  transition: all 0.3s;
   cursor: pointer;
+  &:hover {
+    scale: 1.2;
+  }
 `;
 
 const projectsData = [

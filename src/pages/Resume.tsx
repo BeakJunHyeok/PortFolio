@@ -85,8 +85,13 @@ const Card = styled.div`
   gap: 8px;
   background: #fff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s;
   @media (max-width: 580px) {
     padding: 15px;
+  }
+  &:hover {
+    background: #ddd;
+    /* color: */
   }
 `;
 
