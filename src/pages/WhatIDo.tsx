@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -46,31 +48,31 @@ const Header = styled.div`
     }
   }
 `;
+
 const Contents = styled.div`
+  margin-top: 30px;
+  width: 100%;
+  max-width: 1200px;
   display: grid;
-  max-width: 1320px;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 40px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 60px;
   padding: 30px 50px;
+  box-sizing: border-box;
   @media (max-width: 990px) {
-    display: grid;
-    gap: 10px;
-    grid-template-columns: 1fr;
+    padding: 0 10px;
   }
   @media (max-width: 430px) {
-    padding: 10px;
+    margin-top: 0;
   }
 `;
 
 const Content = styled.div`
   display: flex;
-  gap: 10px;
-  margin-top: 60px;
-  @media (max-width: 430px) {
-    width: 380px;
-    padding-left: 20px;
-  }
+  gap: 14px;
+  align-items: flex-start;
+  padding: 20px;
 `;
+
 const Image = styled.div`
   background: #fff;
   width: 80px;
@@ -80,35 +82,30 @@ const Image = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: 6px;
-  @media (max-width: 430px) {
-  }
 `;
+
 const Img = styled.img`
   width: 70px;
   height: 70px;
   object-fit: cover;
   border-radius: 6px;
-  @media (max-width: 430px) {
-  }
 `;
+
 const CardDesc = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 4px;
 `;
 
-const Name = styled.div`
-  font-size: 20px;
+const Name = styled.h2`
+  font-size: 18px;
   font-weight: bold;
+  margin: 0;
 `;
 
-const Desc = styled.div`
-  font-size: 16px;
-  width: 360px;
-  @media (max-width: 430px) {
-    width: 100%;
-    font-size: 14px;
-  }
+const Desc = styled.p`
+  font-size: 14px;
+  color: #495057;
+  margin: 0;
 `;
 
 const WhatIDo = () => {
@@ -154,10 +151,7 @@ const WhatIDo = () => {
         </Content>
         <Content>
           <Image>
-            <Img
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuFBfBskJw0CLs6VMI3jbaHUntDDMV2KAVQw&s"
-              alt="Icon"
-            />
+            <Img src="/img/jsicon.png" alt="Icon" />
           </Image>
           <CardDesc>
             <Name>Figma</Name>
@@ -169,10 +163,7 @@ const WhatIDo = () => {
         </Content>
         <Content>
           <Image>
-            <Img
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuFBfBskJw0CLs6VMI3jbaHUntDDMV2KAVQw&s"
-              alt="Icon"
-            />
+            <Img src="/img/jsicon.png" alt="Icon" />
           </Image>
           <CardDesc>
             <Name>Figma</Name>
@@ -184,10 +175,7 @@ const WhatIDo = () => {
         </Content>
         <Content>
           <Image>
-            <Img
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuFBfBskJw0CLs6VMI3jbaHUntDDMV2KAVQw&s"
-              alt="Icon"
-            />
+            <Img src="/img/jsicon.png" alt="Icon" />
           </Image>
           <CardDesc>
             <Name>Figma</Name>

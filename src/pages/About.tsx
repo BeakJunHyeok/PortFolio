@@ -67,12 +67,17 @@ const RightContent = styled.div`
   flex-direction: column;
   gap: 20px;
   width: 25%;
+  & > div {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #eaeaea;
+  }
   @media (max-width: 990px) {
-    width: 100%;
+    width: 75%;
     margin: 0 auto;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    /* align-items: center; */
   }
 `;
 const LeftHeader = styled.h4`

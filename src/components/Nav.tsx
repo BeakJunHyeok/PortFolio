@@ -35,16 +35,48 @@ const ProfillImg = styled(motion.img)<{ rotate: boolean }>`
 `;
 
 const Navbar = styled.ul`
+  width: 100%;
   font-size: 16px;
   font-weight: bold;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
   margin: auto 0;
-  gap: 30px;
-  cursor: pointer;
+  gap: 10px;
 `;
+
+const NavItem = styled.li<{ isActive: boolean }>`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  position: relative;
+  z-index: 2;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  color: ${(props) => (props.isActive ? "#fff" : "#000")};
+  transition: color 0.3s ease;
+  &:hover {
+    color: #fff;
+  }
+`;
+
+const BackgroundHighlight = styled(motion.div)`
+  position: absolute;
+  height: 46px;
+  width: 100%;
+  background-color: #20c997;
+  border-radius: 8px;
+  z-index: 1;
+  transition: background-color 0.3s ease;
+`;
+
+interface NavProps {
+  activeSection: string;
+}
 
 const Icons = styled.div`
   display: flex;
@@ -52,16 +84,23 @@ const Icons = styled.div`
   cursor: pointer;
 `;
 
-const Nav: React.FC = () => {
+const Nav: React.FC<NavProps> = ({ activeSection }) => {
+  const menuItems = [
+    { id: "main", label: "Home" },
+    { id: "about", label: "About" },
+    { id: "whatido", label: "What I Do" },
+    { id: "resume", label: "Resume" },
+    { id: "project", label: "My Project" },
+    { id: "contact", label: "Contact" },
+  ];
+
+  const activeIndex = menuItems.findIndex((menu) => menu.id === activeSection);
   const originalImage = "/img/파이리.jfif";
   const changeImage = "/img/꼬북이.jfif";
 
   const [isRotating, setIsRotating] = useState(false);
   const [isOriginalImage, setIsOriginalImage] = useState(true);
 
-  const handleScroll = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-  };
   const handleRotate = () => {
     setIsRotating(true);
     setTimeout(() => {
@@ -87,18 +126,39 @@ const Nav: React.FC = () => {
         Baek Jun Hyeok
       </Header>
       <Navbar>
-        <li onClick={() => handleScroll("main")}>Home</li>
-        <li onClick={() => handleScroll("about")}>About</li>
-        <li onClick={() => handleScroll("whatido")}>What I Do</li>
-        <li onClick={() => handleScroll("resume")}>Resume</li>
-        <li onClick={() => handleScroll("project")}>My Project</li>
-        <li onClick={() => handleScroll("contact")}>Contact</li>
+        {/* 움직이는 배경 강조 */}
+        <BackgroundHighlight
+          layout // layout 애니메이션 활성화
+          initial={false}
+          animate={{
+            top: `${activeIndex * 50}px`, // 활성화된 메뉴의 위치로 이동
+          }}
+          transition={{
+            type: "spring", // 스프링 애니메이션
+            stiffness: 300,
+            damping: 30,
+          }}
+        />
+        {/* 메뉴 항목 */}
+        {menuItems.map((menu) => (
+          <NavItem
+            key={menu.id}
+            isActive={activeSection === menu.id}
+            onClick={() =>
+              document
+                .getElementById(menu.id)
+                ?.scrollIntoView({ behavior: "smooth" })
+            }
+          >
+            {menu.label}
+          </NavItem>
+        ))}
       </Navbar>
       <Icons>
-        <div>🎈</div>
-        <div>🎆</div>
-        <div>🎇</div>
-        <div>🧨</div>
+        <motion.div whileHover={{ scale: 1.2 }}>🎈</motion.div>
+        <motion.div whileHover={{ scale: 1.2 }}>🎆</motion.div>
+        <motion.div whileHover={{ scale: 1.2 }}>🎇</motion.div>
+        <motion.div whileHover={{ scale: 1.2 }}>🧨</motion.div>
       </Icons>
     </Container>
   );

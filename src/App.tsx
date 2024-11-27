@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { createGlobalStyle } from "styled-components";
-import { ThemeProvider } from "styled-components";
 import Nav from "./components/Nav";
 import styled from "styled-components";
 import Main from "./pages/Main";
@@ -41,10 +40,32 @@ const MainContent = styled.main`
   }
 `;
 const App = () => {
+  const [activeSection, setActiveSection] = useState<string>("main");
+  useEffect(() => {
+    const sections = document.querySelectorAll("section");
+    const observerOptions = {
+      root: null,
+      threshold: 0.5, // 60% 이상 보이면 활성화
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
+        }
+      });
+    }, observerOptions);
+
+    sections.forEach((section) => observer.observe(section));
+
+    return () => {
+      sections.forEach((section) => observer.unobserve(section));
+    };
+  }, []);
   return (
     <NavWrapper>
       <GlobalStyle />
-      <Nav />
+      <Nav activeSection={activeSection} />
       <MainContent>
         <Section id="main">
           <Main />
