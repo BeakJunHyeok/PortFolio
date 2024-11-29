@@ -1,0 +1,110 @@
+[
+  {
+    "id": 1,
+    "image": "/img/figma.png",
+    "name": "Figma",
+    "desc": "Lisque persius interesset his et, in quot quidam persequeris vim, ad mea essent possim iriure."
+  },
+  {
+    "id": 2,
+    "image": "/img/reacticon.png",
+    "name": "HTML5",
+    "desc": "React makes it painless to create interactive UIs. Design simple views for each state in your application."
+  },
+  {
+    "id": 3,
+    "image": "/img/jsicon.png",
+    "name": "JavaScript",
+    "desc": "JavaScript is the programming language of the web. It is versatile and beginner-friendly."
+  },
+  {
+    "id": 4,
+    "image": "/img/파이리.jfif",
+    "name": "CSS",
+    "desc": "CSS is the language we use to style a Web page. It describes how HTML elements are to be displayed."
+  },
+  {
+    "id": 5,
+    "image": "/img/파이리.jfif",
+    "name": "SCSS",
+    "desc": "HTML is the standard markup language for creating Web pages."
+  },
+  {
+    "id": 6,
+    "image": "/img/reacticon.png",
+    "name": "React.js",
+    "desc": "Node.js® is a JavaScript runtime built on Chrome's V8 JavaScript engine."
+  },
+  {
+    "id": 7,
+    "image": "/img/figma.png",
+    "name": "Figma",
+    "desc": "Lisque persius interesset his et, in quot quidam persequeris vim, ad mea essent possim iriure."
+  },
+  {
+    "id": 8,
+    "image": "/img/reacticon.png",
+    "name": "Node.js",
+    "desc": "React makes it painless to create interactive UIs. Design simple views for each state in your application."
+  },
+  {
+    "id": 9,
+    "image": "/img/파이리.jfif",
+    "name": "Next.js",
+    "desc": "JavaScript is the programming language of the web. It is versatile and beginner-friendly."
+  },
+  {
+    "id": 10,
+    "image": "/img/파이리.jfif",
+    "name": "BootStrap",
+    "desc": "CSS is the language we use to style a Web page. It describes how HTML elements are to be displayed."
+  },
+  {
+    "id": 11,
+    "image": "/img/파이리.jfif",
+    "name": "Vercel",
+    "desc": "HTML is the standard markup language for creating Web pages."
+  },
+  {
+    "id": 12,
+    "image": "/img/파이리.jfif",
+    "name": "SCSS",
+    "desc": "HTML is the standard markup language for creating Web pages."
+  },
+  {
+    "id": 13,
+    "image": "/img/파이리.jfif",
+    "name": "SCSS",
+    "desc": "HTML is the standard markup language for creating Web pages."
+  },
+  {
+    "id": 14,
+    "image": "/img/파이리.jfif",
+    "name": "SCSS",
+    "desc": "HTML is the standard markup language for creating Web pages."
+  },
+  {
+    "id": 15,
+    "image": "/img/파이리.jfif",
+    "name": "SCSS",
+    "desc": "HTML is the standard markup language for creating Web pages."
+  },
+  {
+    "id": 16,
+    "image": "/img/파이리.jfif",
+    "name": "SCSS",
+    "desc": "HTML is the standard markup language for creating Web pages."
+  },
+  {
+    "id": 17,
+    "image": "/img/파이리.jfif",
+    "name": "SCSS",
+    "desc": "HTML is the standard markup language for creating Web pages."
+  },
+  {
+    "id": 18,
+    "image": "/img/파이리.jfif",
+    "name": "SCSS",
+    "desc": "HTML is the standard markup language for creating Web pages."
+  }
+]

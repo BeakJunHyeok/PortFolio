@@ -12,7 +12,11 @@ const Wrapper = styled.main`
   @media (max-width: 990px) {
     width: 100%;
   }
+  @media (max-width: 430px) {
+    height: 100%;
+  }
 `;
+
 const Header = styled.div`
   margin: 50px 0;
   width: 100%;
@@ -53,6 +57,10 @@ const Content = styled.div`
     justify-content: center;
     align-items: center;
   }
+  @media (max-width: 430px) {
+    gap: 20px;
+    padding: 20px;
+  }
 `;
 const LeftContent = styled.div`
   display: flex;
@@ -74,6 +82,13 @@ const RightContent = styled.div`
   }
   @media (max-width: 990px) {
     width: 75%;
+    margin: 0 auto;
+    flex-direction: column;
+    justify-content: center;
+    /* align-items: center; */
+  }
+  @media (max-width: 430px) {
+    gap: 10px;
     margin: 0 auto;
     flex-direction: column;
     justify-content: center;

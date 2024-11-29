@@ -2,6 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
+import { CardData } from "../types";
+import data from "../WhatIDo.json";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -49,6 +52,48 @@ const Header = styled.div`
   }
 `;
 
+const StyledSlider = styled(Slider)`
+  width: 100%;
+  max-width: 1200px;
+
+  .slick-dots li button:before {
+    color: #495057;
+  }
+
+  .slick-prev,
+  .slick-next {
+    z-index: 10;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 50%;
+    transition: all 0.3s;
+    &:hover {
+      background-color: #20c997;
+    }
+  }
+
+  .slick-prev {
+    left: -50px;
+  }
+
+  .slick-next {
+    right: -50px;
+  }
+`;
+
+const SlideGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3열 */
+  grid-template-rows: repeat(2, auto); /* 2행 */
+  gap: 20px; /* 콘텐츠 간 간격 */
+  width: 100%;
+  box-sizing: border-box;
+`;
+
 const Contents = styled.div`
   margin-top: 30px;
   width: 100%;
@@ -67,9 +112,8 @@ const Contents = styled.div`
 `;
 
 const Content = styled.div`
-  display: flex;
+  width: 100%;
   gap: 14px;
-  align-items: flex-start;
   padding: 20px;
 `;
 
@@ -85,8 +129,8 @@ const Image = styled.div`
 `;
 
 const Img = styled.img`
-  width: 70px;
-  height: 70px;
+  width: 60px;
+  height: 60px;
   object-fit: cover;
   border-radius: 6px;
 `;
@@ -94,6 +138,8 @@ const Img = styled.img`
 const CardDesc = styled.div`
   display: flex;
   flex-direction: column;
+  margin-left: 4px;
+  margin-top: 4px;
 `;
 
 const Name = styled.h2`
@@ -108,84 +154,44 @@ const Desc = styled.p`
   margin: 0;
 `;
 
-const WhatIDo = () => {
+const WhatIDo: React.FC = () => {
+  const chunkedData = [];
+  for (let i = 0; i < data.length; i += 6) {
+    chunkedData.push(data.slice(i, i + 6)); // 6개씩 분리
+  }
+
+  // Slider settings
+  const settings = {
+    dots: true, // 하단 점 네비게이션 활성화
+    infinite: true, // 무한 스크롤
+    speed: 500, // 슬라이드 전환 속도
+    slidesToShow: 1, // 한 페이지(6개)만 표시
+    slidesToScroll: 1, // 한 번에 한 페이지 이동
+    arrows: true, // 화살표 활성화
+  };
+
   return (
     <Wrapper>
       <Header>What I Do</Header>
-      <Contents>
-        <Content>
-          <Image>
-            <Img src="/img/figma.png" alt="Icon" />
-          </Image>
-          <CardDesc>
-            <Name>Figma</Name>
-            <Desc>
-              Lisque persius interesset his et, in quot quidam persequeris vim,
-              ad mea essent possim iriure.
-            </Desc>
-          </CardDesc>
-        </Content>
-        <Content>
-          <Image>
-            <Img src="/img/reacticon.png" alt="Icon" />
-          </Image>
-          <CardDesc>
-            <Name>Figma</Name>
-            <Desc>
-              Lisque persius interesset his et, in quot quidam persequeris vim,
-              ad mea essent possim iriure.
-            </Desc>
-          </CardDesc>
-        </Content>
-        <Content>
-          <Image>
-            <Img src="/img/jsicon.png" />
-          </Image>
-          <CardDesc>
-            <Name>Figma</Name>
-            <Desc>
-              Lisque persius interesset his et, in quot quidam persequeris vim,
-              ad mea essent possim iriure.
-            </Desc>
-          </CardDesc>
-        </Content>
-        <Content>
-          <Image>
-            <Img src="/img/jsicon.png" alt="Icon" />
-          </Image>
-          <CardDesc>
-            <Name>Figma</Name>
-            <Desc>
-              Lisque persius interesset his et, in quot quidam persequeris vim,
-              ad mea essent possim iriure.
-            </Desc>
-          </CardDesc>
-        </Content>
-        <Content>
-          <Image>
-            <Img src="/img/jsicon.png" alt="Icon" />
-          </Image>
-          <CardDesc>
-            <Name>Figma</Name>
-            <Desc>
-              Lisque persius interesset his et, in quot quidam persequeris vim,
-              ad mea essent possim iriure.
-            </Desc>
-          </CardDesc>
-        </Content>
-        <Content>
-          <Image>
-            <Img src="/img/jsicon.png" alt="Icon" />
-          </Image>
-          <CardDesc>
-            <Name>Figma</Name>
-            <Desc>
-              Lisque persius interesset his et, in quot quidam persequeris vim,
-              ad mea essent possim iriure.
-            </Desc>
-          </CardDesc>
-        </Content>
-      </Contents>
+      <StyledSlider {...settings}>
+        {chunkedData.map((group, index) => (
+          <Contents>
+            <SlideGrid key={index}>
+              {group.map((item) => (
+                <Content key={item.id}>
+                  <Image>
+                    <Img src={item.image} alt={item.name} />
+                  </Image>
+                  <CardDesc>
+                    <Name>{item.name}</Name>
+                    <Desc>{item.desc}</Desc>
+                  </CardDesc>
+                </Content>
+              ))}
+            </SlideGrid>
+          </Contents>
+        ))}
+      </StyledSlider>
     </Wrapper>
   );
 };
