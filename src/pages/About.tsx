@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
-const Wrapper = styled.main`
+const Wrapper = styled(motion.main)`
   width: 100%;
   height: 100vh;
   display: flex;
@@ -17,7 +18,7 @@ const Wrapper = styled.main`
   }
 `;
 
-const Header = styled.div`
+const Header = styled(motion.div)`
   margin: 50px 0;
   width: 100%;
   font-size: 40px;
@@ -62,7 +63,7 @@ const Content = styled.div`
     padding: 20px;
   }
 `;
-const LeftContent = styled.div`
+const LeftContent = styled(motion.div)`
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -70,7 +71,7 @@ const LeftContent = styled.div`
   font-size: 16px;
 `;
 
-const RightContent = styled.div`
+const RightContent = styled(motion.div)`
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -101,12 +102,50 @@ const LeftHeader = styled.h4`
 
 const Desc = styled.p``;
 
+// Motion Variants
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.3, // 자식 요소가 0.3초 간격으로 등장
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 50 },
+  visible: { opacity: 1, y: 0, transition: { duration: 1.0, ease: "easeOut" } },
+};
+
+const leftContentVariants = {
+  hidden: { opacity: 0, x: -50 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 1.2, ease: "easeOut" },
+  },
+};
+
+const rightContentVariants = {
+  hidden: { opacity: 0, x: 50 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 1.2, ease: "easeOut" },
+  },
+};
+
 const About = () => {
   return (
-    <Wrapper>
-      <Header>About Me</Header>
+    <Wrapper
+      variants={containerVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.3 }}
+    >
+      <Header variants={itemVariants}>About Me</Header>
       <Content>
-        <LeftContent>
+        <LeftContent variants={leftContentVariants}>
           <LeftHeader>안녕하세요.</LeftHeader>
           <Desc>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti
@@ -116,7 +155,8 @@ const About = () => {
             dolor sit amet consectetur adipisicing elit. Quaerat dicta molestiae
           </Desc>
         </LeftContent>
-        <RightContent>
+
+        <RightContent variants={rightContentVariants}>
           <div>Name : 백준혁</div>
           <div>Email : wnsgur1832@naver.com</div>
           <div>Age : 28</div>

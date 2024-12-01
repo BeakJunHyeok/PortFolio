@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
-const Wrapper = styled.main`
+const Wrapper = styled(motion.main)`
   width: 100%;
   min-height: 100vh;
   display: flex;
@@ -18,7 +19,7 @@ const Wrapper = styled.main`
   }
 `;
 
-const Header = styled.h1`
+const Header = styled(motion.h1)`
   margin: 50px 0;
   width: 100%;
   font-size: 40px;
@@ -47,7 +48,7 @@ const Header = styled.h1`
   }
 `;
 
-const Contents = styled.div`
+const Contents = styled(motion.div)`
   width: 100%;
   max-width: 1200px;
   display: grid;
@@ -61,7 +62,7 @@ const Contents = styled.div`
   }
 `;
 
-const Content = styled.div``;
+const Content = styled(motion.div)``;
 
 const Title = styled.h2`
   margin-bottom: 16px;
@@ -69,13 +70,13 @@ const Title = styled.h2`
   font-weight: bold;
 `;
 
-const Cards = styled.div`
+const Cards = styled(motion.div)`
   display: flex;
   flex-direction: column;
   gap: 20px;
 `;
 
-const Card = styled.div`
+const Card = styled(motion.div)`
   width: 100%;
   border: 1px solid #dee2e6;
   border-radius: 6px;
@@ -115,15 +116,58 @@ const SubName = styled.p`
   font-size: 16px;
 `;
 
+// Motion Variants
+const wrapperVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.2, // 헤더와 카드 간 순차 실행
+    },
+  },
+};
+
+const headerVariants = {
+  hidden: { opacity: 0, y: 50 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
+};
+
+const contentVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      delayChildren: 0.3, // 헤더가 끝난 후 실행
+      staggerChildren: 0.2, // 카드가 순차적으로 등장
+    },
+  },
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, scale: 0.8 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      duration: 0.3, // 카드 한 개의 애니메이션 지속 시간
+      ease: [0.4, 0.0, 0.6, 1.0],
+    },
+  },
+};
+
 const Resume = () => {
   return (
-    <Wrapper>
-      <Header>Resume</Header>
-      <Contents>
+    <Wrapper
+      variants={wrapperVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.5 }}
+    >
+      <Header variants={headerVariants}>Resume</Header>
+      <Contents variants={contentVariants}>
         <Content>
           <Title>My Education</Title>
           <Cards>
-            <Card>
+            <Card variants={cardVariants}>
               <Date>2013 - 2016</Date>
               <Name>운천고등학교</Name>
               <SubName>고등학교 과정</SubName>
@@ -132,7 +176,7 @@ const Resume = () => {
                 distinctio animi.
               </div>
             </Card>
-            <Card>
+            <Card variants={cardVariants}>
               <Date>2016 - 2023</Date>
               <Name>평택대학교</Name>
               <SubName>데이터정보학과</SubName>
@@ -141,7 +185,7 @@ const Resume = () => {
                 distinctio animi.
               </div>
             </Card>
-            <Card>
+            <Card variants={cardVariants}>
               <Date>2024 - 2024</Date>
               <Name>K-Digital Training (KDT)</Name>
               <SubName>기업연계 프론트엔드 개발 수료</SubName>
@@ -152,10 +196,10 @@ const Resume = () => {
             </Card>
           </Cards>
         </Content>
-        <Content>
+        <Content variants={contentVariants}>
           <Title>My Experience</Title>
           <Cards>
-            <Card>
+            <Card variants={cardVariants}>
               <Date>2022 - 2023</Date>
               <Name>Company A</Name>
               <SubName>Frontend Developer</SubName>
@@ -164,7 +208,7 @@ const Resume = () => {
                 distinctio animi.
               </div>
             </Card>
-            <Card>
+            <Card variants={cardVariants}>
               <Date>2023 - 2024</Date>
               <Name>Company B</Name>
               <SubName>Intern Developer</SubName>
@@ -173,7 +217,7 @@ const Resume = () => {
                 distinctio animi.
               </div>
             </Card>
-            <Card>
+            <Card variants={cardVariants}>
               <Date>2024 - Present</Date>
               <Name>Company C</Name>
               <SubName>Full-Stack Developer</SubName>

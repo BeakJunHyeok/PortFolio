@@ -4,9 +4,10 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import { CardData } from "../types";
+import { motion } from "framer-motion";
 import data from "../WhatIDo.json";
 
-const Wrapper = styled.div`
+const Wrapper = styled(motion.div)`
   width: 100%;
   height: 100vh;
   display: flex;
@@ -19,7 +20,7 @@ const Wrapper = styled.div`
     height: 100%;
   }
 `;
-const Header = styled.div`
+const Header = styled(motion.div)`
   margin: 50px 0;
   width: 100%;
   font-size: 40px;
@@ -58,6 +59,7 @@ const StyledSlider = styled(Slider)`
 
   .slick-dots li button:before {
     color: #495057;
+    margin-top: -24px;
   }
 
   .slick-prev,
@@ -85,11 +87,11 @@ const StyledSlider = styled(Slider)`
   }
 `;
 
-const SlideGrid = styled.div`
+const SlideGrid = styled(motion.div)`
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3열 */
-  grid-template-rows: repeat(2, auto); /* 2행 */
-  gap: 20px; /* 콘텐츠 간 간격 */
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, auto);
+  gap: 20px;
   width: 100%;
   box-sizing: border-box;
 `;
@@ -111,7 +113,7 @@ const Contents = styled.div`
   }
 `;
 
-const Content = styled.div`
+const Content = styled(motion.div)`
   width: 100%;
   gap: 14px;
   padding: 20px;
@@ -154,6 +156,41 @@ const Desc = styled.p`
   margin: 0;
 `;
 
+// Motion Variants
+const wrapperVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.2, // 헤더가 나타난 후 카드들이 순차적으로 나타남
+    },
+  },
+};
+
+const headerVariants = {
+  hidden: { opacity: 0, y: 50 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
+};
+
+const slideGridVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      delayChildren: 0.3, // 헤더가 끝난 후 실행
+      staggerChildren: 0.3, // 카드가 순차적으로 등장
+    },
+  },
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, scale: 0 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: { duration: 0.6, ease: "easeOut" },
+  },
+};
+
 const WhatIDo: React.FC = () => {
   const chunkedData = [];
   for (let i = 0; i < data.length; i += 6) {
@@ -171,14 +208,19 @@ const WhatIDo: React.FC = () => {
   };
 
   return (
-    <Wrapper>
-      <Header>What I Do</Header>
+    <Wrapper
+      variants={wrapperVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.5 }}
+    >
+      <Header variants={headerVariants}>What I Do</Header>
       <StyledSlider {...settings}>
         {chunkedData.map((group, index) => (
           <Contents>
-            <SlideGrid key={index}>
+            <SlideGrid key={index} variants={slideGridVariants}>
               {group.map((item) => (
-                <Content key={item.id}>
+                <Content key={item.id} variants={cardVariants}>
                   <Image>
                     <Img src={item.image} alt={item.name} />
                   </Image>

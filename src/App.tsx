@@ -82,9 +82,9 @@ const App = () => {
         <Section id="project">
           <Project />
         </Section>
-        {/* <Section id="contact">
+        <Section id="contact">
           <Contact />
-        </Section> */}
+        </Section>
       </MainContent>
     </NavWrapper>
   );

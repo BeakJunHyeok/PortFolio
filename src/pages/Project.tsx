@@ -124,6 +124,17 @@ const ProjectImage = styled.img`
   }
 `;
 
+// 애니메이션 정의
+const sectionVariants = {
+  hidden: { opacity: 0, y: 50 }, // 초기 상태: 투명하고 아래로 이동
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }, // 보이는 상태: 투명도 1, 위치 0
+};
+
+// Section 컴포넌트 수정
+const Section = styled(motion.section)`
+  padding: 20px; // 기본 스타일 추가
+`;
+
 const projectsData = [
   { id: 1, category: "Design", imageUrl: "/img/dd.jpg" },
   { id: 2, category: "Brand", imageUrl: "/img/dd.jpg" },
