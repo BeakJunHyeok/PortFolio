@@ -12,6 +12,7 @@ const Wrapper = styled(motion.main)`
   background: #fff;
   @media (max-width: 990px) {
     width: 100%;
+    height: 100%;
   }
   @media (max-width: 430px) {
     height: 100%;
@@ -49,7 +50,7 @@ const Content = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 40px;
+  gap: 60px;
   @media (max-width: 990px) {
     width: 100%;
     gap: 50px;
@@ -60,15 +61,22 @@ const Content = styled.div`
   }
   @media (max-width: 430px) {
     gap: 20px;
-    padding: 20px;
+    padding: 0 20px;
   }
 `;
 const LeftContent = styled(motion.div)`
   display: flex;
   flex-direction: column;
   gap: 10px;
-  width: 75%;
+  width: 50%;
   font-size: 16px;
+  @media (max-width: 990px) {
+    width: 75%;
+  }
+  @media (max-width: 530px) {
+    width: 100%;
+    text-align: center;
+  }
 `;
 
 const RightContent = styled(motion.div)`
@@ -86,21 +94,27 @@ const RightContent = styled(motion.div)`
     margin: 0 auto;
     flex-direction: column;
     justify-content: center;
-    /* align-items: center; */
   }
   @media (max-width: 430px) {
     gap: 10px;
     margin: 0 auto;
     flex-direction: column;
     justify-content: center;
-    /* align-items: center; */
+    margin-bottom: 30px;
   }
 `;
 const LeftHeader = styled.h4`
   font-size: 28px;
 `;
 
-const Desc = styled.p``;
+const Desc = styled.p`
+  line-height: 2;
+  @media (max-width: 430px) {
+    line-height: 1.4;
+    width: 100%;
+    text-align: center;
+  }
+`;
 
 // Motion Variants
 const containerVariants = {
@@ -148,19 +162,26 @@ const About = () => {
         <LeftContent variants={leftContentVariants}>
           <LeftHeader>안녕하세요.</LeftHeader>
           <Desc>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti
-            architecto eius corporis necessitatibus obcaecati praesentium ullam
-            quis. Voluptatibus id doloribus, neque officia maiores nemo
-            recusandae veniam dolorum adipisci magnam numquam. Lorem, ipsum
-            dolor sit amet consectetur adipisicing elit. Quaerat dicta molestiae
+            저는 끊임없이 배우며 성장하는 프론트엔드 개발자입니다. 사용자 경험을
+            중시하고, 직관적이고 세련된 인터페이스 구현에 열정을 갖고 있습니다.
+            변화하는 기술에 발맞춰 도전하며, 창의적이고 집요한 노력으로 문제를
+            해결해 나가고자 합니다. 앞으로도 더 나은 코드를 작성하며 성장해
+            나가겠습니다.
           </Desc>
         </LeftContent>
-
         <RightContent variants={rightContentVariants}>
-          <div>Name : 백준혁</div>
-          <div>Email : wnsgur1832@naver.com</div>
-          <div>Age : 28</div>
-          <div>From : 백준혁</div>
+          <div>
+            <b>Name</b> : 백준혁
+          </div>
+          <div>
+            <b>Email</b> : wnsgur1832@naver.com
+          </div>
+          <div>
+            <b>Age</b> : 28
+          </div>
+          <div>
+            <b>From</b> : Hwaseong-si
+          </div>
         </RightContent>
       </Content>
     </Wrapper>

@@ -1,110 +1,110 @@
 [
   {
     "id": 1,
-    "image": "/img/figma.png",
+    "image": "/img/Figma-Dark.svg",
     "name": "Figma",
-    "desc": "Lisque persius interesset his et, in quot quidam persequeris vim, ad mea essent possim iriure."
+    "desc": "Figma의 실시간 협업 기능을 활용해 효율적으로 UI/UX 디자인을 제작하고 디자인 워크플로우를 관리했습니다."
   },
   {
     "id": 2,
-    "image": "/img/reacticon.png",
+    "image": "/img/HTML.svg",
     "name": "HTML5",
-    "desc": "React makes it painless to create interactive UIs. Design simple views for each state in your application."
+    "desc": "HTML5의 시맨틱 태그를 사용해 웹 구조를 명확히 하고, 검색 엔진 최적화를 고려한 마크업을 작성했습니다."
   },
   {
     "id": 3,
-    "image": "/img/jsicon.png",
+    "image": "/img/java.png",
     "name": "JavaScript",
-    "desc": "JavaScript is the programming language of the web. It is versatile and beginner-friendly."
+    "desc": "JavaScript를 사용해 사용자와 상호작용하는 동적인 웹 애플리케이션을 개발하며, 다양한 브라우저 API와 모듈화를 활용했습니다."
   },
   {
     "id": 4,
-    "image": "/img/파이리.jfif",
+    "image": "/img/CSS.svg",
     "name": "CSS",
-    "desc": "CSS is the language we use to style a Web page. It describes how HTML elements are to be displayed."
+    "desc": "CSS를 활용해 반응형 웹 디자인을 구현하고, Flexbox와 Grid 레이아웃을 사용해 다양한 디바이스 환경에 최적화된 UI를 제작했습니다."
   },
   {
     "id": 5,
-    "image": "/img/파이리.jfif",
+    "image": "/img/Sass.svg",
     "name": "SCSS",
-    "desc": "HTML is the standard markup language for creating Web pages."
+    "desc": "SCSS의 중첩 규칙과 변수 기능을 활용해 스타일 코드를 효율적으로 관리하며, 유지보수성을 높였습니다."
   },
   {
     "id": 6,
-    "image": "/img/reacticon.png",
-    "name": "React.js",
-    "desc": "Node.js® is a JavaScript runtime built on Chrome's V8 JavaScript engine."
+    "image": "/img/StyledComponents.svg",
+    "name": "StyledComponents",
+    "desc": "Styled Components를 사용해 컴포넌트 스타일링을 캡슐화하고, 동적 테마 설정과 재사용 가능한 스타일 시스템을 구현했습니다."
   },
   {
     "id": 7,
-    "image": "/img/figma.png",
-    "name": "Figma",
-    "desc": "Lisque persius interesset his et, in quot quidam persequeris vim, ad mea essent possim iriure."
+    "image": "/img/React.svg",
+    "name": "React",
+    "desc": "React를 사용해 컴포넌트 기반의 동적인 웹 애플리케이션을 만들며 다양한 훅(Hooks)을 활용해 상태와 효과를 관리해봤습니다."
   },
   {
     "id": 8,
-    "image": "/img/reacticon.png",
-    "name": "Node.js",
-    "desc": "React makes it painless to create interactive UIs. Design simple views for each state in your application."
+    "image": "/img/TypeScript.svg",
+    "name": "TypeScript",
+    "desc": "TypeScript로 정적 타입을 적용하고, 다양한 타입 시스템을 이해하며 코드의 안정성과 가독성을 높이기 위해 활용해봤습니다."
   },
   {
     "id": 9,
-    "image": "/img/파이리.jfif",
-    "name": "Next.js",
-    "desc": "JavaScript is the programming language of the web. It is versatile and beginner-friendly."
+    "image": "/img/NodeJS.svg",
+    "name": "Node.js",
+    "desc": "Node.js를 사용해 간단한 서버를 구현하고, REST API와 데이터 통신을 시도해보며 백엔드의 기본 구조를 경험해봤습니다."
   },
   {
     "id": 10,
-    "image": "/img/파이리.jfif",
-    "name": "BootStrap",
-    "desc": "CSS is the language we use to style a Web page. It describes how HTML elements are to be displayed."
+    "image": "/img/NextJS-Dark.svg",
+    "name": "Next.js",
+    "desc": "Next.js로 페이지 기반 라우팅과 API 라우트를 사용해 간단한 프로젝트를 구성하며 서버와 클라이언트를 연결해봤습니다."
   },
   {
     "id": 11,
-    "image": "/img/파이리.jfif",
-    "name": "Vercel",
-    "desc": "HTML is the standard markup language for creating Web pages."
+    "image": "/img/Bootstrap.svg",
+    "name": "BootStrap",
+    "desc": "BootStrap의 다양한 컴포넌트와 유틸리티 클래스를 활용해 반응형 디자인을 다수 구현하며, 빠른 프로토타이핑을 경험해봤습니다."
   },
   {
     "id": 12,
-    "image": "/img/파이리.jfif",
-    "name": "SCSS",
-    "desc": "HTML is the standard markup language for creating Web pages."
+    "image": "/img/Vercel-Dark.svg",
+    "name": "Vercel",
+    "desc": "Vercel을 사용해 정적 및 동적 웹 애플리케이션을 손쉽게 배포하고, 빠른 배포 환경을 통해 배포 프로세스를 간소화해봤습니다."
   },
   {
     "id": 13,
-    "image": "/img/파이리.jfif",
-    "name": "SCSS",
-    "desc": "HTML is the standard markup language for creating Web pages."
+    "image": "/img/Redux.svg",
+    "name": "Redux",
+    "desc": "Redux를 사용해 상태 관리를 경험해보고, 전역 상태의 흐름과 액션 디스패치를 이해하는 데 도전해봤습니다."
   },
   {
     "id": 14,
-    "image": "/img/파이리.jfif",
-    "name": "SCSS",
-    "desc": "HTML is the standard markup language for creating Web pages."
+    "image": "/img/Babel.svg",
+    "name": "Babel",
+    "desc": "Babel을 사용해 최신 JavaScript 코드를 변환하고, 다양한 브라우저 환경에서 호환성을 확보하는 과정을 시도해봤습니다."
   },
   {
     "id": 15,
-    "image": "/img/파이리.jfif",
-    "name": "SCSS",
-    "desc": "HTML is the standard markup language for creating Web pages."
+    "image": "/img/MongoDB.svg",
+    "name": "MongoDB",
+    "desc": "MongoDB를 활용해 데이터베이스를 생성하고, 기본적인 CRUD 작업을 통해 NoSQL 데이터베이스 구조를 체험해봤습니다."
   },
   {
     "id": 16,
-    "image": "/img/파이리.jfif",
-    "name": "SCSS",
-    "desc": "HTML is the standard markup language for creating Web pages."
+    "image": "/img/Supabase-Dark.svg",
+    "name": "Supabase",
+    "desc": "Supabase를 사용해 백엔드 없이 간단한 데이터베이스와 인증 기능을 구현하며 클라우드 서비스의 활용을 경험해봤습니다."
   },
   {
     "id": 17,
-    "image": "/img/파이리.jfif",
-    "name": "SCSS",
-    "desc": "HTML is the standard markup language for creating Web pages."
+    "image": "/img/Apollo.svg",
+    "name": "Apollo",
+    "desc": "Apollo Client를 사용해 GraphQL 쿼리를 작성하고, 간단한 데이터 요청과 캐싱을 경험해봤습니다."
   },
   {
     "id": 18,
     "image": "/img/파이리.jfif",
-    "name": "SCSS",
+    "name": "ddddd",
     "desc": "HTML is the standard markup language for creating Web pages."
   }
 ]

@@ -121,7 +121,7 @@ const wrapperVariants = {
   hidden: {},
   visible: {
     transition: {
-      staggerChildren: 0.2, // 헤더와 카드 간 순차 실행
+      staggerChildren: 0.2,
     },
   },
 };
@@ -136,8 +136,8 @@ const contentVariants = {
   visible: {
     opacity: 1,
     transition: {
-      delayChildren: 0.3, // 헤더가 끝난 후 실행
-      staggerChildren: 0.2, // 카드가 순차적으로 등장
+      delayChildren: 0.3,
+      staggerChildren: 0.2,
     },
   },
 };
@@ -148,7 +148,7 @@ const cardVariants = {
     opacity: 1,
     scale: 1,
     transition: {
-      duration: 0.3, // 카드 한 개의 애니메이션 지속 시간
+      duration: 0.3,
       ease: [0.4, 0.0, 0.6, 1.0],
     },
   },
@@ -160,7 +160,7 @@ const Resume = () => {
       variants={wrapperVariants}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, amount: 0.5 }}
+      viewport={{ once: true, amount: 0.3 }}
     >
       <Header variants={headerVariants}>Resume</Header>
       <Contents variants={contentVariants}>
@@ -172,8 +172,8 @@ const Resume = () => {
               <Name>운천고등학교</Name>
               <SubName>고등학교 과정</SubName>
               <div>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro
-                distinctio animi.
+                이과 과정에서 기초 과학과 수학을 집중적으로 학습하며 논리적
+                사고와 문제 해결 능력을 키웠습니다.
               </div>
             </Card>
             <Card variants={cardVariants}>
@@ -181,8 +181,8 @@ const Resume = () => {
               <Name>평택대학교</Name>
               <SubName>데이터정보학과</SubName>
               <div>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro
-                distinctio animi.
+                데이터정보학과에서 Python, Java, SQL, SPSS, R 등을 활용한 기초
+                프로그래밍과 데이터 분석 기법을 익혔습니다.
               </div>
             </Card>
             <Card variants={cardVariants}>
@@ -190,18 +190,18 @@ const Resume = () => {
               <Name>K-Digital Training (KDT)</Name>
               <SubName>기업연계 프론트엔드 개발 수료</SubName>
               <div>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro
-                distinctio animi.
+                프론트엔드 개발에 필요한 HTML, CSS, JavaScript, React 등 필수
+                기술을 집중적으로 학습하며 실무 프로젝트를 경험했습니다.
               </div>
             </Card>
           </Cards>
         </Content>
         <Content variants={contentVariants}>
-          <Title>My Experience</Title>
+          <Title>TeamProject</Title>
           <Cards>
             <Card variants={cardVariants}>
               <Date>2022 - 2023</Date>
-              <Name>Company A</Name>
+              <Name>AliExpress</Name>
               <SubName>Frontend Developer</SubName>
               <div>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro
@@ -210,7 +210,7 @@ const Resume = () => {
             </Card>
             <Card variants={cardVariants}>
               <Date>2023 - 2024</Date>
-              <Name>Company B</Name>
+              <Name>Thread</Name>
               <SubName>Intern Developer</SubName>
               <div>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro
@@ -219,7 +219,7 @@ const Resume = () => {
             </Card>
             <Card variants={cardVariants}>
               <Date>2024 - Present</Date>
-              <Name>Company C</Name>
+              <Name>Coupang Play</Name>
               <SubName>Full-Stack Developer</SubName>
               <div>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro

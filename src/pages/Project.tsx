@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import OpenProject from "../components/OpenProject";
 
 const Wrapper = styled.main`
+  padding: 20px;
   width: 100%;
   min-height: 100vh;
   display: flex;
@@ -15,7 +16,7 @@ const Wrapper = styled.main`
 `;
 
 const Header = styled.h1`
-  margin: 50px 0;
+  margin: 60px 0;
   width: 100%;
   font-size: 40px;
   font-weight: bold;
@@ -31,7 +32,7 @@ const Header = styled.h1`
     left: 50%;
     opacity: 0.5;
     transform: translate(-50%, -50%);
-    font-size: 120px;
+    font-size: 110px;
     font-weight: bold;
     color: #dee3e4;
     z-index: -1;
@@ -49,6 +50,9 @@ const FilterContainer = styled.div`
   justify-content: center;
   gap: 20px;
   margin-bottom: 20px;
+  @media (max-width: 430px) {
+    margin-bottom: 0;
+  }
 `;
 
 const FilterButton = styled.button<{ active: boolean }>`
@@ -73,7 +77,7 @@ const GridContainer = styled.div`
   gap: 20px;
   width: 100%;
   max-width: 1200px;
-  padding: 0 20px;
+  padding: 20px 20px;
   box-sizing: border-box;
   margin: 0 auto;
   grid-auto-flow: dense;
@@ -125,24 +129,44 @@ const ProjectImage = styled.img`
 `;
 
 // 애니메이션 정의
-const sectionVariants = {
-  hidden: { opacity: 0, y: 50 }, // 초기 상태: 투명하고 아래로 이동
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }, // 보이는 상태: 투명도 1, 위치 0
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
 };
 
-// Section 컴포넌트 수정
-const Section = styled(motion.section)`
-  padding: 20px; // 기본 스타일 추가
-`;
+const headerVariants = {
+  hidden: { opacity: 0, y: 50 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.8, ease: "easeOut" },
+  },
+};
+
+const projectsVariants = {
+  hidden: { opacity: 0, scale: 0.9 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      duration: 0.8,
+      ease: "easeOut",
+    },
+  },
+};
 
 const projectsData = [
-  { id: 1, category: "Design", imageUrl: "/img/dd.jpg" },
-  { id: 2, category: "Brand", imageUrl: "/img/dd.jpg" },
-  { id: 3, category: "Photos", imageUrl: "/img/image.png" },
-  { id: 4, category: "Design", imageUrl: "/img/dd.jpg" },
-  { id: 5, category: "Brand", imageUrl: "/img/꼬북이.jfif" },
-  { id: 6, category: "Photos", imageUrl: "/img/파이리.jfif" },
-  { id: 7, category: "Photos", imageUrl: "/img/dd.jpg" },
+  { id: 1, category: "HTML5", imageUrl: "/img/dd.jpg" },
+  { id: 2, category: "JavaScript", imageUrl: "/img/dd.jpg" },
+  { id: 3, category: "React", imageUrl: "/img/image.png" },
+  { id: 4, category: "HTML5", imageUrl: "/img/dd.jpg" },
+  { id: 5, category: "JavaScript", imageUrl: "/img/꼬북이.jfif" },
+  { id: 6, category: "React", imageUrl: "/img/파이리.jfif" },
+  { id: 7, category: "React", imageUrl: "/img/dd.jpg" },
 ];
 
 // Framer Motion Variants
@@ -176,10 +200,24 @@ const Project: React.FC = () => {
       : projectsData.filter((project) => project.category === selectedCategory);
 
   return (
-    <Wrapper>
-      <Header>MY Project</Header>
+    <Wrapper
+      as={motion.main}
+      variants={containerVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.2 }}
+    >
+      <Header
+        as={motion.h1}
+        variants={headerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+      >
+        MY Project
+      </Header>
       <FilterContainer>
-        {["All", "Design", "Brand", "Photos"].map((category) => (
+        {["All", "HTML5", "JavaScript", "React"].map((category) => (
           <FilterButton
             key={category}
             active={selectedCategory === category}
@@ -189,7 +227,13 @@ const Project: React.FC = () => {
           </FilterButton>
         ))}
       </FilterContainer>
-      <GridContainer>
+      <GridContainer
+        as={motion.div}
+        variants={projectsVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+      >
         <AnimatePresence>
           {filteredProjects.map((project) => (
             <ProjectItem

@@ -83,7 +83,7 @@ const ScrollIcon = styled.div`
 `;
 
 const Main = () => {
-  const fullText = "I'm Beak Jun Hyeok...";
+  const fullText = "I'm Beak Jun Hyeok";
   const [displayedText, setDisplayedText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
   const [index, setIndex] = useState(0);
@@ -140,7 +140,7 @@ const Main = () => {
           {displayedText}
         </Introduce>
         <Location>based in Hwaseong-si, Gyeonggi-do</Location>
-        <Button>Hire Me</Button>
+        <Button onClick={() => handleScroll("contact")}>Hire Me</Button>
       </Contents>
       <ScrollIcon onClick={() => handleScroll("about")}>
         <FontAwesomeIcon icon={faChevronDown} size="lg" bounce />

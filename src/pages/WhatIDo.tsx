@@ -56,7 +56,9 @@ const Header = styled(motion.div)`
 const StyledSlider = styled(Slider)`
   width: 100%;
   max-width: 1200px;
-
+  @media (max-width: 990px) {
+    margin-bottom: 20px;
+  }
   .slick-dots li button:before {
     color: #495057;
     margin-top: -24px;
@@ -76,14 +78,17 @@ const StyledSlider = styled(Slider)`
     &:hover {
       background-color: #20c997;
     }
+    @media (max-width: 1550px) {
+      z-index: -9999;
+    }
   }
 
   .slick-prev {
-    left: -50px;
+    left: -30px;
   }
 
   .slick-next {
-    right: -50px;
+    right: -30px;
   }
 `;
 
@@ -94,6 +99,12 @@ const SlideGrid = styled(motion.div)`
   gap: 20px;
   width: 100%;
   box-sizing: border-box;
+  @media (max-width: 530px) {
+    margin-top: 20px;
+    gap: 10px;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, auto);
+  }
 `;
 
 const Contents = styled.div`
@@ -117,13 +128,17 @@ const Content = styled(motion.div)`
   width: 100%;
   gap: 14px;
   padding: 20px;
+  @media (max-width: 600px) {
+  }
+  @media (max-width: 430px) {
+    gap: 10px;
+    width: 180px;
+  }
 `;
 
 const Image = styled.div`
-  background: #fff;
-  width: 80px;
-  height: 80px;
-  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
+  width: 70px;
+  height: 70px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -133,7 +148,7 @@ const Image = styled.div`
 const Img = styled.img`
   width: 60px;
   height: 60px;
-  object-fit: cover;
+  object-fit: contain;
   border-radius: 6px;
 `;
 
@@ -148,12 +163,21 @@ const Name = styled.h2`
   font-size: 18px;
   font-weight: bold;
   margin: 0;
+  @media (max-width: 430px) {
+    font-size: 14px;
+  }
 `;
 
 const Desc = styled.p`
   font-size: 14px;
   color: #495057;
   margin: 0;
+  @media (max-width: 600px) {
+    font-size: 12px;
+  }
+  @media (max-width: 430px) {
+    font-size: 12px;
+  }
 `;
 
 // Motion Variants
