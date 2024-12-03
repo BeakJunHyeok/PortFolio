@@ -66,7 +66,7 @@ const NavItem = styled.li<{ isActive: boolean }>`
 
 const BackgroundHighlight = styled(motion.div)`
   position: absolute;
-  height: 46px;
+  height: 45px;
   width: 100%;
   background-color: #20c997;
   border-radius: 8px;

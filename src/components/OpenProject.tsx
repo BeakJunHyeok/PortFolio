@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
+import { OpenProjectProps } from "../types";
 
 const Overlay = styled.div`
   position: fixed;
@@ -64,7 +65,7 @@ const Contents = styled.div`
   @media (max-width: 699px) {
     flex-direction: column;
     width: 100%;
-    height: 0%;
+    height: 100%;
   }
   @media (max-width: 430px) {
     flex-direction: column;
@@ -75,6 +76,8 @@ const Contents = styled.div`
 const ImgBox = styled.div`
   width: 50%;
   height: 610px;
+  overflow: hidden;
+  border-radius: 8px;
   @media (max-width: 699px) {
     height: 320px;
     width: 100%;
@@ -88,9 +91,11 @@ const ImgBox = styled.div`
 const Img = styled.img`
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   border-radius: 8px;
   @media (max-width: 699px) {
+    width: 100%;
+    height: 100%;
   }
 `;
 
@@ -128,6 +133,7 @@ const Name = styled.div`
 const Desc = styled.div`
   font-size: 18px;
   font-weight: normal;
+
   @media (max-width: 699px) {
     font-size: 16px;
   }
@@ -142,12 +148,28 @@ const Date = styled.div``;
 
 const People = styled.div``;
 
-const Site = styled.div``;
+const Site = styled.a`
+  transition: all 0.3s;
+  &:hover {
+    color: #20c997;
+  }
+`;
 
-const OpenProject: React.FC<{ imageUrl: string; onClose: () => void }> = ({
+const OpenProject: React.FC<OpenProjectProps> = ({
   imageUrl,
   onClose,
+  projectData,
 }) => {
+  const {
+    ProjectName,
+    ProjectInfo,
+    ProjectDesc,
+    skill,
+    date,
+    people,
+    siteURL,
+  } = projectData;
+
   return (
     <Overlay onClick={onClose}>
       <Wrapper
@@ -158,23 +180,20 @@ const OpenProject: React.FC<{ imageUrl: string; onClose: () => void }> = ({
         transition={{ duration: 0.3 }}
       >
         <CloseButton onClick={onClose}>×</CloseButton>
-        <Title>Project Title</Title>
+        <Title>{ProjectName}</Title>
         <Contents>
           <ImgBox>
             <Img src={imageUrl} alt="Project Image" />
           </ImgBox>
           <Content>
-            <Name>Project Info</Name>
-            <Desc>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga
-              soluta nemo eos, architecto, possimus praesentium nulla
-              perspiciatis dolorum, delectus doloremque temporibus vel quod a.
-              Culpa labore delectus sunt ratione quam!
-            </Desc>
-            <Skill>Skill</Skill>
-            <Date>진행기간</Date>
-            <People>개발인원 </People>
-            <Site>사이트</Site>
+            <Name>{ProjectInfo}</Name>
+            <Desc>{ProjectDesc}</Desc>
+            <Skill>📚 Skills : {skill || "N/A"}</Skill>
+            <Date>📅 기간 : {date || "N/A"}</Date>
+            <People>👥 팀원 : {people || "N/A"}</People>
+            <Site href={siteURL} target="_blank" rel="noopener noreferrer">
+              🌐 {siteURL || "사이트 없음"}
+            </Site>
           </Content>
         </Contents>
       </Wrapper>

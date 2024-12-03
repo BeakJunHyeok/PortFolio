@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { motion, AnimatePresence } from "framer-motion";
 import OpenProject from "../components/OpenProject";
+import projectsData from "../project.json";
+import { ProjectType } from "../types";
 
 const Wrapper = styled.main`
   padding: 20px;
@@ -122,6 +124,7 @@ const ProjectImage = styled.img`
   width: 100%;
   height: 100%;
   transition: all 0.3s;
+  object-fit: contain;
   cursor: pointer;
   &:hover {
     scale: 1.2;
@@ -159,15 +162,15 @@ const projectsVariants = {
   },
 };
 
-const projectsData = [
-  { id: 1, category: "HTML5", imageUrl: "/img/dd.jpg" },
-  { id: 2, category: "JavaScript", imageUrl: "/img/dd.jpg" },
-  { id: 3, category: "React", imageUrl: "/img/image.png" },
-  { id: 4, category: "HTML5", imageUrl: "/img/dd.jpg" },
-  { id: 5, category: "JavaScript", imageUrl: "/img/꼬북이.jfif" },
-  { id: 6, category: "React", imageUrl: "/img/파이리.jfif" },
-  { id: 7, category: "React", imageUrl: "/img/dd.jpg" },
-];
+// const projectsData = [
+//   { id: 1, category: "HTML5", imageUrl: "/img/dd.jpg" },
+//   { id: 2, category: "JavaScript", imageUrl: "/img/dd.jpg" },
+//   { id: 3, category: "React", imageUrl: "/img/image.png" },
+//   { id: 4, category: "HTML5", imageUrl: "/img/dd.jpg" },
+//   { id: 5, category: "JavaScript", imageUrl: "/img/꼬북이.jfif" },
+//   { id: 6, category: "React", imageUrl: "/img/파이리.jfif" },
+//   { id: 7, category: "React", imageUrl: "/img/dd.jpg" },
+// ];
 
 // Framer Motion Variants
 const itemVariants = {
@@ -192,12 +195,16 @@ const itemVariants = {
 
 const Project: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
-  const [selectedProject, setSelectedProject] = useState<string | null>(null);
+  const [selectedProject, setSelectedProject] = useState<ProjectType | null>(
+    null
+  );
 
   const filteredProjects =
     selectedCategory === "All"
       ? projectsData
-      : projectsData.filter((project) => project.category === selectedCategory);
+      : projectsData.filter(
+          (project: ProjectType) => project.category === selectedCategory
+        );
 
   return (
     <Wrapper
@@ -235,7 +242,7 @@ const Project: React.FC = () => {
         viewport={{ once: true, amount: 0.3 }}
       >
         <AnimatePresence>
-          {filteredProjects.map((project) => (
+          {filteredProjects.map((project: ProjectType) => (
             <ProjectItem
               key={project.id}
               variants={itemVariants}
@@ -243,7 +250,7 @@ const Project: React.FC = () => {
               animate="visible"
               exit="exit"
               layout
-              onClick={() => setSelectedProject(project.imageUrl)} // 클릭 시 모달 열기
+              onClick={() => setSelectedProject(project)} // 클릭 시 모달 열기
             >
               <ProjectImage src={project.imageUrl} alt={project.category} />
             </ProjectItem>
@@ -252,7 +259,8 @@ const Project: React.FC = () => {
       </GridContainer>
       {selectedProject && (
         <OpenProject
-          imageUrl={selectedProject}
+          imageUrl={selectedProject.imageUrl}
+          projectData={selectedProject}
           onClose={() => setSelectedProject(null)} // 모달 닫기
         />
       )}

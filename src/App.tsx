@@ -24,6 +24,15 @@ const GlobalStyle = createGlobalStyle`
     text-decoration: none;
     color: inherit;
   }
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+  body {
+    font-family: 'Pretendard', sans-serif;
+  }
 `;
 const NavWrapper = styled.div`
   display: flex;
@@ -39,8 +48,36 @@ const MainContent = styled.main`
     margin-left: 0;
   }
 `;
+
+const ScrollToTopButton = styled.button<{ isVisible: boolean }>`
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  width: 44px;
+  height: 44px;
+  background-color: rgba(0, 0, 0, 0.2);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  transition: opacity 0.3s;
+  opacity: ${(props: { isVisible: boolean }) => (props.isVisible ? 1 : 0)};
+  pointer-events: ${(props: { isVisible: boolean }) =>
+    props.isVisible ? "auto" : "none"};
+
+  &:hover {
+    background-color: #20c997;
+  }
+`;
+
 const App = () => {
   const [activeSection, setActiveSection] = useState<string>("main");
+  const [showScrollButton, setShowScrollButton] = useState(false);
+
   useEffect(() => {
     const sections = document.querySelectorAll("section");
     const observerOptions = {
@@ -52,6 +89,13 @@ const App = () => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           setActiveSection(entry.target.id);
+
+          // About 섹션부터 버튼 표시
+          if (entry.target.id === "about") {
+            setShowScrollButton(true);
+          } else if (entry.target.id === "main") {
+            setShowScrollButton(false);
+          }
         }
       });
     }, observerOptions);
@@ -62,6 +106,14 @@ const App = () => {
       sections.forEach((section) => observer.unobserve(section));
     };
   }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   return (
     <NavWrapper>
       <GlobalStyle />
@@ -85,6 +137,9 @@ const App = () => {
         <Section id="contact">
           <Contact />
         </Section>
+        <ScrollToTopButton isVisible={showScrollButton} onClick={scrollToTop}>
+          ^
+        </ScrollToTopButton>
       </MainContent>
     </NavWrapper>
   );

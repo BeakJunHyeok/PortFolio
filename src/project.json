@@ -1,0 +1,86 @@
+[
+  {
+    "id": 1,
+    "category": "HTML5",
+    "imageUrl": "/projectimg/ali.png",
+    "skill": "HTML,CSS,SCSS,JavaScript",
+    "date": "2024.07.12 ~ 2024.09.04",
+    "people": "3명",
+    "siteURL": "https://aliexpress-fc895.web.app/",
+    "ProjectName": "AliExpress",
+    "ProjectInfo": "알리익스프레스 클론코딩",
+    "ProjectDesc": "Lorem ipsum dolor sit amet consectetur adipisicing elit Fuga soluta nemo eos, architecto, possimus praesentium nulla perspiciatis dolorum, delectus doloremque temporibus vel quod a."
+  },
+  {
+    "id": 2,
+    "category": "JavaScript",
+    "imageUrl": "/img/dd.jpg",
+    "skill": "",
+    "date": "",
+    "people": "",
+    "siteURL": "",
+    "ProjectName": "",
+    "ProjectInfo": "",
+    "ProjectDesc": ""
+  },
+  {
+    "id": 3,
+    "category": "React",
+    "imageUrl": "/img/image.png",
+    "skill": "",
+    "date": "",
+    "people": "",
+    "siteURL": "",
+    "ProjectName": "",
+    "ProjectInfo": "",
+    "ProjectDesc": ""
+  },
+  {
+    "id": 4,
+    "category": "HTML5",
+    "imageUrl": "/img/dd.jpg",
+    "skill": "",
+    "date": "",
+    "people": "",
+    "siteURL": "",
+    "ProjectName": "",
+    "ProjectInfo": "",
+    "ProjectDesc": ""
+  },
+  {
+    "id": 5,
+    "category": "JavaScript",
+    "imageUrl": "/img/꼬북이.jfif",
+    "skill": "",
+    "date": "",
+    "people": "",
+    "siteURL": "",
+    "ProjectName": "",
+    "ProjectInfo": "",
+    "ProjectDesc": ""
+  },
+  {
+    "id": 6,
+    "category": "React",
+    "imageUrl": "/img/파이리.jfif",
+    "skill": "",
+    "date": "",
+    "people": "",
+    "siteURL": "",
+    "ProjectName": "",
+    "ProjectInfo": "",
+    "ProjectDesc": ""
+  },
+  {
+    "id": 7,
+    "category": "React",
+    "imageUrl": "/img/dd.jpg",
+    "skill": "",
+    "date": "",
+    "people": "",
+    "siteURL": "",
+    "ProjectName": "",
+    "ProjectInfo": "",
+    "ProjectDesc": ""
+  }
+]
