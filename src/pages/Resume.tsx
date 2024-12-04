@@ -162,7 +162,7 @@ const Resume = () => {
       whileInView="visible"
       viewport={{ once: true, amount: 0.3 }}
     >
-      <Header variants={headerVariants}>Resume</Header>
+      <Header variants={headerVariants}>Experience</Header>
       <Contents variants={contentVariants}>
         <Content>
           <Title>My Education</Title>
@@ -200,27 +200,27 @@ const Resume = () => {
           <Title>TeamProject</Title>
           <Cards>
             <Card variants={cardVariants}>
-              <Date>2022 - 2023</Date>
+              <Date>2024 - 2024</Date>
               <Name>AliExpress</Name>
-              <SubName>Frontend Developer</SubName>
+              <SubName>Frontend</SubName>
               <div>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro
                 distinctio animi.
               </div>
             </Card>
             <Card variants={cardVariants}>
-              <Date>2023 - 2024</Date>
+              <Date>2024 - 2024</Date>
               <Name>Thread</Name>
-              <SubName>Intern Developer</SubName>
+              <SubName>Frontend</SubName>
               <div>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro
                 distinctio animi.
               </div>
             </Card>
             <Card variants={cardVariants}>
-              <Date>2024 - Present</Date>
-              <Name>Coupang Play</Name>
-              <SubName>Full-Stack Developer</SubName>
+              <Date>2024 - 2024</Date>
+              <Name>Viva Play</Name>
+              <SubName>Frontend</SubName>
               <div>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro
                 distinctio animi.

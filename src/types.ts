@@ -29,5 +29,6 @@ export interface OpenProjectProps {
     date: string;
     people: string;
     siteURL: string;
+    images?: string[];
   };
 }

@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { OpenProjectProps } from "../types";
+import Slider from "react-slick";
 
 const Overlay = styled.div`
   position: fixed;
@@ -47,6 +48,9 @@ const CloseButton = styled.button`
   font-size: 36px;
   cursor: pointer;
   color: #000;
+  @media (max-width: 430px) {
+    font-size: 30px;
+  }
 `;
 
 const Title = styled.div`
@@ -73,9 +77,43 @@ const Contents = styled.div`
   }
 `;
 
+const StyledSlider = styled(Slider)`
+  width: 100%;
+  max-width: 1200px;
+  cursor: pointer;
+  .slick-dots {
+    bottom: 10px;
+  }
+
+  .slick-dots li button:before {
+    color: #495057;
+    font-size: 12px;
+    opacity: 0.6;
+    transition: all 0.3s ease;
+  }
+
+  .slick-dots li.slick-active button:before {
+    color: #20c997;
+    opacity: 1;
+  }
+
+  .slick-dots li button:before:hover {
+    color: #ff6347;
+    opacity: 1;
+  }
+
+  .slick-dots li {
+    margin: 0 8px;
+  }
+
+  @media (max-width: 990px) {
+    margin-bottom: 20px;
+  }
+`;
+
 const ImgBox = styled.div`
   width: 50%;
-  height: 610px;
+  height: 600px;
   overflow: hidden;
   border-radius: 8px;
   @media (max-width: 699px) {
@@ -90,7 +128,7 @@ const ImgBox = styled.div`
 
 const Img = styled.img`
   width: 100%;
-  height: 100%;
+  height: 600px;
   object-fit: contain;
   border-radius: 8px;
   @media (max-width: 699px) {
@@ -155,11 +193,8 @@ const Site = styled.a`
   }
 `;
 
-const OpenProject: React.FC<OpenProjectProps> = ({
-  imageUrl,
-  onClose,
-  projectData,
-}) => {
+const OpenProject: React.FC<OpenProjectProps> = ({ onClose, projectData }) => {
+  const [imageList, setImageList] = useState<string[]>([]);
   const {
     ProjectName,
     ProjectInfo,
@@ -168,7 +203,23 @@ const OpenProject: React.FC<OpenProjectProps> = ({
     date,
     people,
     siteURL,
+    images,
   } = projectData;
+
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000,
+  };
+
+  useEffect(() => {
+    const validImages = Array.isArray(images) ? images.filter(Boolean) : [];
+    setImageList(validImages);
+  }, [images]);
 
   return (
     <Overlay onClick={onClose}>
@@ -183,7 +234,15 @@ const OpenProject: React.FC<OpenProjectProps> = ({
         <Title>{ProjectName}</Title>
         <Contents>
           <ImgBox>
-            <Img src={imageUrl} alt="Project Image" />
+            <StyledSlider {...settings}>
+              {imageList.map((image, index) => (
+                <Img
+                  key={index}
+                  src={image}
+                  alt={`Project Image ${index + 1}`}
+                />
+              ))}
+            </StyledSlider>
           </ImgBox>
           <Content>
             <Name>{ProjectInfo}</Name>

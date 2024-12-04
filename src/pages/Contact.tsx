@@ -60,15 +60,16 @@ const Content = styled.div`
 
 const Form = styled(motion.form)`
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(1, 1fr);
   gap: 10px;
   width: 100%;
   max-width: 600px;
   grid-template-areas:
-    "firstname lastname"
-    "email phone"
-    "textarea textarea"
-    "submit submit";
+    "name"
+    "email"
+    "phone"
+    "textarea"
+    "submit";
   @media (max-width: 430px) {
     grid-template-columns: 1fr;
     grid-template-areas:
@@ -81,14 +82,13 @@ const Form = styled(motion.form)`
 `;
 
 const Input = styled.input`
-  width: 200px;
-  height: 50px;
+  width: 400px;
+  height: 40px;
   border-radius: 8px;
   border: 1px solid #22272c;
   font-size: 14px;
   color: #757575;
   padding-left: 10px;
-  box-sizing: border-box;
   &:focus {
     outline: none;
   }
@@ -101,14 +101,6 @@ const Name = styled(Input)`
   grid-area: name;
 `;
 
-const FirstName = styled(Input)`
-  grid-area: firstname;
-`;
-
-const LastName = styled(Input)`
-  grid-area: lastname;
-`;
-
 const Email = styled(Input)`
   grid-area: email;
 `;
@@ -116,6 +108,7 @@ const Email = styled(Input)`
 const Phone = styled(Input)`
   grid-area: phone;
 `;
+
 const Textarea = styled.textarea`
   grid-area: textarea;
   resize: none;
@@ -126,6 +119,10 @@ const Textarea = styled.textarea`
   font-size: 14px;
   color: #757575;
   padding: 10px;
+  &::placeholder {
+    font-family: "Pretendard", sans-serif;
+    font-weight: normal;
+  }
   &:focus {
     outline: none;
   }
@@ -153,10 +150,14 @@ const Submit = styled.button`
 const Information = styled(motion.div)`
   display: flex;
   flex-direction: column;
-  margin-bottom: 40px;
+  align-items: start;
+  margin-bottom: 100px;
   gap: 20px;
   width: 100%;
   max-width: 600px;
+  @media (max-width: 835px) {
+    margin-bottom: 10px;
+  }
 `;
 
 const Card = styled.div`
@@ -238,14 +239,7 @@ const Contact = () => {
       <Header variants={headerVariants}>Contact</Header>
       <Content>
         <Form variants={formVariants}>
-          {isMobile ? (
-            <Name placeholder="Full Name" />
-          ) : (
-            <>
-              <FirstName placeholder="First Name" />
-              <LastName placeholder="Last Name" />
-            </>
-          )}
+          <Name placeholder="Full Name" />
           <Email placeholder="Email address" />
           <Phone placeholder="Phone number" />
           <Textarea placeholder="Message" />

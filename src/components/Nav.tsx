@@ -66,7 +66,7 @@ const NavItem = styled.li<{ isActive: boolean }>`
 
 const BackgroundHighlight = styled(motion.div)`
   position: absolute;
-  height: 45px;
+  height: 43px;
   width: 100%;
   background-color: #20c997;
   border-radius: 8px;
@@ -89,7 +89,7 @@ const Nav: React.FC<NavProps> = ({ activeSection }) => {
     { id: "main", label: "Home" },
     { id: "about", label: "About" },
     { id: "whatido", label: "What I Do" },
-    { id: "resume", label: "Resume" },
+    { id: "resume", label: "Experience" },
     { id: "project", label: "My Project" },
     { id: "contact", label: "Contact" },
   ];

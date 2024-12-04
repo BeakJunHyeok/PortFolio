@@ -14,7 +14,6 @@ const Wrapper = styled.main`
   justify-content: center;
   align-items: center;
   background: #f8f9fa;
-  gap: 20px;
 `;
 
 const Header = styled.h1`
@@ -120,14 +119,151 @@ const ProjectItem = styled(motion.div)`
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 `;
 
+const ImageContainer = styled.div`
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  cursor: pointer;
+
+  &:hover::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 1;
+  }
+
+  &:hover img {
+    transform: scale(1.2);
+  }
+
+  &:hover .text {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  &:hover .arrow {
+    opacity: 1;
+    animation: move-arrow 1s infinite alternate;
+  }
+
+  /* 각 화살표 애니메이션 */
+  .arrow.top-left {
+    animation: move-arrow-top-left 1s infinite alternate;
+  }
+
+  .arrow.top-right {
+    animation: move-arrow-top-right 1s infinite alternate;
+  }
+
+  .arrow.bottom-left {
+    animation: move-arrow-bottom-left 1s infinite alternate;
+  }
+
+  .arrow.bottom-right {
+    animation: move-arrow-bottom-right 1s infinite alternate;
+  }
+
+  /* 화살표 애니메이션을 각 방향에 맞게 정의 */
+  @keyframes move-arrow-top-left {
+    0% {
+      transform: translate(0, 0);
+    }
+    100% {
+      transform: translate(-20px, -20px);
+    }
+  }
+
+  @keyframes move-arrow-top-right {
+    0% {
+      transform: translate(0, 0);
+    }
+    100% {
+      transform: translate(20px, -20px);
+    }
+  }
+
+  @keyframes move-arrow-bottom-left {
+    0% {
+      transform: translate(0, 0);
+    }
+    100% {
+      transform: translate(-20px, 20px);
+    }
+  }
+
+  @keyframes move-arrow-bottom-right {
+    0% {
+      transform: rotate(45deg);
+      transform: translate(0, 0);
+    }
+    100% {
+      transform: rotate(45deg);
+      transform: translate(20px, 20px);
+    }
+  }
+`;
+
 const ProjectImage = styled.img`
   width: 100%;
   height: 100%;
-  transition: all 0.3s;
   object-fit: contain;
-  cursor: pointer;
-  &:hover {
-    scale: 1.2;
+  transition: transform 0.3s ease;
+  position: relative;
+  z-index: 0;
+`;
+
+const HoverContent = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #fff;
+  z-index: 2;
+
+  .text {
+    font-size: 20px;
+    font-weight: bold;
+    opacity: 0;
+    transition: all 0.3s ease;
+  }
+
+  .arrow {
+    position: absolute;
+    border: solid #fff;
+    display: inline-block;
+    padding: 10px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    &.top-left {
+      top: -50px;
+      left: -50px;
+      transform: rotate(45deg);
+      border-width: 0 4px 4px 0;
+    }
+    &.top-right {
+      top: -50px;
+      right: -50px;
+      transform: rotate(-45deg);
+      border-width: 0 0 4px 4px;
+    }
+    &.bottom-left {
+      bottom: -50px;
+      left: -50px;
+      transform: rotate(-135deg);
+      border-width: 4px 4px 0 0;
+    }
+    &.bottom-right {
+      bottom: -50px;
+      right: -50px;
+      transform: rotate(135deg);
+      border-width: 4px 0 0 4px;
+    }
   }
 `;
 
@@ -224,7 +360,7 @@ const Project: React.FC = () => {
         MY Project
       </Header>
       <FilterContainer>
-        {["All", "HTML5", "JavaScript", "React"].map((category) => (
+        {["All", "JavaScript", "React", "CSS"].map((category) => (
           <FilterButton
             key={category}
             active={selectedCategory === category}
@@ -252,7 +388,16 @@ const Project: React.FC = () => {
               layout
               onClick={() => setSelectedProject(project)} // 클릭 시 모달 열기
             >
-              <ProjectImage src={project.imageUrl} alt={project.category} />
+              <ImageContainer>
+                <ProjectImage src={project.imageUrl} alt={project.category} />
+                <HoverContent>
+                  <div className="text">Click here</div>
+                  <div className="arrow top-left"></div>
+                  <div className="arrow top-right"></div>
+                  <div className="arrow bottom-left"></div>
+                  <div className="arrow bottom-right"></div>
+                </HoverContent>
+              </ImageContainer>
             </ProjectItem>
           ))}
         </AnimatePresence>

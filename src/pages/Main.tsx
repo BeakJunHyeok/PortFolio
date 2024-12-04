@@ -5,11 +5,23 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { motion } from "framer-motion";
 
 const Container = styled.main`
-  background: #777;
+  background: url("/img/main.png") center/cover no-repeat;
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: #fff;
   &::before {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 1;
     content: "";
-    background: #dee3e4;
+    background: rgba(0, 0, 0, 0.6);
   }
   @media (max-width: 990px) {
     width: 100%;
@@ -25,6 +37,7 @@ const Contents = styled.div`
   gap: 16px;
   width: 100%;
   height: 100vh;
+  z-index: 2;
 `;
 
 const Header = styled.div`
@@ -66,7 +79,7 @@ const Button = styled.button`
   padding: 16px 45px;
   border: 1px solid #20c997;
   border-radius: 30px;
-  background: #777;
+  background: rgba(0, 0, 0, 0.4);
   transition: all 0.3s;
   cursor: pointer;
   &:hover {
@@ -77,9 +90,10 @@ const Button = styled.button`
 
 const ScrollIcon = styled.div`
   cursor: pointer;
-  position: relative;
+  position: absolute;
   bottom: 100px;
   left: 50%;
+  z-index: 2;
 `;
 
 const Main = () => {
