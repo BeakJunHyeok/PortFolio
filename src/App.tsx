@@ -8,8 +8,10 @@ import WhatIDo from "./pages/WhatIDo";
 import Resume from "./pages/Resume";
 import Project from "./pages/Project";
 import Contact from "./pages/Contact";
+import { faArrowUp, faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const GlobalStyle = createGlobalStyle`
+const GlobalStyle = createGlobalStyle<{ isDarkMode: boolean }>`
   * {
     margin: 0;
     padding: 0;
@@ -30,19 +32,28 @@ const GlobalStyle = createGlobalStyle`
     font-weight: 400;
     font-style: normal;
 }
-  body {
+body {
     font-family: 'Pretendard', sans-serif;
+    background-color: ${(props) =>
+      props.isDarkMode ? "#121212" : "#ffffff"};  /* 다크모드 배경 */
+    color: ${(props) =>
+      props.isDarkMode ? "#ffffff" : "#121212"}; /* 다크모드 텍스트 색상 */
+    transition: background-color 0.3s, color 0.3s; /* 부드러운 전환 효과 */
   }
 `;
+
 const NavWrapper = styled.div`
   display: flex;
   width: 100%;
 `;
 const Section = styled.section``;
-const MainContent = styled.main`
+const MainContent = styled.main<{ isDarkMode: boolean }>`
   width: calc(100% - 260px);
   margin-left: 260px;
   overflow-x: hidden;
+  background-color: ${(props) =>
+    props.isDarkMode ? "#121212" : "#ffffff"}; /* 다크모드 배경색 */
+
   @media (max-width: 990px) {
     width: 100%;
     margin-left: 0;
@@ -74,9 +85,26 @@ const ScrollToTopButton = styled.button<{ isVisible: boolean }>`
   }
 `;
 
+const ModeToggleButton = styled.button<{ isDarkMode: boolean }>`
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 24px;
+  color: ${(props) => (props.isDarkMode ? "#fff" : "#000")};
+  transition: color 0.3s;
+  z-index: 2;
+  &:hover {
+    opacity: 0.7;
+  }
+`;
+
 const App = () => {
   const [activeSection, setActiveSection] = useState<string>("main");
   const [showScrollButton, setShowScrollButton] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false); // 다크모드 상태
 
   useEffect(() => {
     const sections = document.querySelectorAll("section");
@@ -114,16 +142,20 @@ const App = () => {
     });
   };
 
+  const toggleDarkMode = () => {
+    setIsDarkMode((prevMode) => !prevMode); // 다크 모드 상태 전환
+  };
+
   return (
     <NavWrapper>
-      <GlobalStyle />
+      <GlobalStyle isDarkMode={isDarkMode} />
       <Nav activeSection={activeSection} />
-      <MainContent>
+      <MainContent isDarkMode={isDarkMode}>
         <Section id="main">
           <Main />
         </Section>
         <Section id="about">
-          <About />
+          <About isDarkMode={false} />
         </Section>
         <Section id="whatido">
           <WhatIDo />
@@ -138,8 +170,11 @@ const App = () => {
           <Contact />
         </Section>
         <ScrollToTopButton isVisible={showScrollButton} onClick={scrollToTop}>
-          ^
+          <FontAwesomeIcon icon={faArrowUp} />
         </ScrollToTopButton>
+        <ModeToggleButton onClick={toggleDarkMode} isDarkMode={isDarkMode}>
+          <FontAwesomeIcon icon={isDarkMode ? faSun : faMoon} />
+        </ModeToggleButton>
       </MainContent>
     </NavWrapper>
   );

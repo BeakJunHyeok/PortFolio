@@ -170,7 +170,7 @@ const Name = styled.h2`
 
 const Desc = styled.p`
   font-size: 14px;
-  color: #495057;
+  color: gray;
   margin: 0;
   @media (max-width: 600px) {
     font-size: 12px;

@@ -18,7 +18,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/about",
-        element: <About />,
+        element: <About isDarkMode={false} />,
       },
       {
         path: "/whatido",

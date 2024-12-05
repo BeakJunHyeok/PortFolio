@@ -128,7 +128,7 @@ const ImgBox = styled.div`
 
 const Img = styled.img`
   width: 100%;
-  height: 600px;
+  height: 550px;
   object-fit: contain;
   border-radius: 8px;
   @media (max-width: 699px) {

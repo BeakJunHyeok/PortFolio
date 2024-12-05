@@ -175,6 +175,7 @@ const IconImg = styled.img`
   height: 50px;
   border-radius: 50%;
 `;
+
 const Adrres = styled.div`
   font-size: 16px;
   font-weight: bold;
@@ -239,7 +240,7 @@ const Contact = () => {
       <Header variants={headerVariants}>Contact</Header>
       <Content>
         <Form variants={formVariants}>
-          <Name placeholder="Full Name" />
+          <Name placeholder="Name" />
           <Email placeholder="Email address" />
           <Phone placeholder="Phone number" />
           <Textarea placeholder="Message" />
@@ -247,6 +248,9 @@ const Contact = () => {
         </Form>
         <Information variants={informationVariants}>
           <Card>
+            <Adrres>저의 포트폴리오를 읽어주셔서 감사합니다.</Adrres>
+          </Card>
+          {/* <Card>
             <IconImg src="/img/Github-Dark.svg"></IconImg>
             <Adrres>https://github.com/BeakJunHyeok</Adrres>
           </Card>
@@ -257,7 +261,7 @@ const Contact = () => {
           <Card>
             <IconImg src="/img/꼬북이.jfif"></IconImg>
             <Adrres>Hwaseong-si, Gyeonggi-do</Adrres>
-          </Card>
+          </Card> */}
         </Information>
       </Content>
     </Wrapper>

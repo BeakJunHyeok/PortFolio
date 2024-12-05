@@ -191,7 +191,7 @@ const Resume = () => {
               <SubName>기업연계 프론트엔드 개발 수료</SubName>
               <div>
                 프론트엔드 개발에 필요한 HTML, CSS, JavaScript, React 등 필수
-                기술을 집중적으로 학습하며 실무 프로젝트를 경험했습니다.
+                기술을 집중적으로 학습하며 프로젝트를 경험했습니다.
               </div>
             </Card>
           </Cards>

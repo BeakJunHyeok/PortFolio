@@ -153,7 +153,9 @@ const Main = () => {
         >
           {displayedText}
         </Introduce>
-        <Location>based in Hwaseong-si, Gyeonggi-do</Location>
+        <Location>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit.{" "}
+        </Location>
         <Button onClick={() => handleScroll("contact")}>Hire Me</Button>
       </Contents>
       <ScrollIcon onClick={() => handleScroll("about")}>

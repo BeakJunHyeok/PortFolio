@@ -22,6 +22,7 @@ const Header = styled.div`
   align-items: center;
   font-size: 21px;
 `;
+
 const ProfillImg = styled(motion.img)<{ rotate: boolean }>`
   width: 160px;
   height: 160px;
@@ -58,7 +59,7 @@ const NavItem = styled.li<{ isActive: boolean }>`
   border-radius: 4px;
   cursor: pointer;
   color: ${(props) => (props.isActive ? "#fff" : "#000")};
-  transition: color 0.3s ease;
+  transition: all 0.3s ease;
   &:hover {
     color: #fff;
   }
@@ -66,12 +67,14 @@ const NavItem = styled.li<{ isActive: boolean }>`
 
 const BackgroundHighlight = styled(motion.div)`
   position: absolute;
-  height: 43px;
-  width: 100%;
+  height: 42px;
+  width: 90%;
   background-color: #20c997;
   border-radius: 8px;
   z-index: 1;
   transition: background-color 0.3s ease;
+  &:hover {
+  }
 `;
 
 interface NavProps {
@@ -100,6 +103,7 @@ const Nav: React.FC<NavProps> = ({ activeSection }) => {
 
   const [isRotating, setIsRotating] = useState(false);
   const [isOriginalImage, setIsOriginalImage] = useState(true);
+  const [hoverIndex, setHoverIndex] = useState<number | null>(null);
 
   const handleRotate = () => {
     setIsRotating(true);
@@ -117,33 +121,33 @@ const Nav: React.FC<NavProps> = ({ activeSection }) => {
           rotate={isRotating}
           onClick={handleRotate}
           initial={{ rotateY: 0 }}
-          animate={{ rotateY: isRotating ? 720 : 0 }} // 동전처럼 회전
+          animate={{ rotateY: isRotating ? 720 : 0 }}
           transition={{
-            duration: 1, // 1초 동안 회전
+            duration: 1,
             ease: "easeInOut",
           }}
         />
         Baek Jun Hyeok
       </Header>
       <Navbar>
-        {/* 움직이는 배경 강조 */}
         <BackgroundHighlight
           layout // layout 애니메이션 활성화
           initial={false}
           animate={{
-            top: `${activeIndex * 50}px`, // 활성화된 메뉴의 위치로 이동
+            top: `${(hoverIndex !== null ? hoverIndex : activeIndex) * 50}px`,
           }}
           transition={{
             type: "spring", // 스프링 애니메이션
-            stiffness: 300,
+            stiffness: 200,
             damping: 30,
           }}
         />
-        {/* 메뉴 항목 */}
-        {menuItems.map((menu) => (
+        {menuItems.map((menu, index) => (
           <NavItem
             key={menu.id}
             isActive={activeSection === menu.id}
+            onMouseEnter={() => setHoverIndex(index)}
+            onMouseLeave={() => setHoverIndex(null)}
             onClick={() =>
               document
                 .getElementById(menu.id)

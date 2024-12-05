@@ -1,15 +1,15 @@
-import React from "react";
-import styled from "styled-components";
+import React, { useState } from "react";
+import styled, { keyframes } from "styled-components";
 import { motion } from "framer-motion";
 
-const Wrapper = styled(motion.main)`
+const Wrapper = styled(motion.main)<{ isDarkMode: boolean }>`
   width: 100%;
   height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: #fff;
+  background: ${(props) => (props.isDarkMode ? "#121212" : "#fff")};
   @media (max-width: 990px) {
     width: 100%;
     height: 100%;
@@ -84,16 +84,18 @@ const RightContent = styled(motion.div)`
   flex-direction: column;
   gap: 20px;
   width: 25%;
-  & > div {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    border-bottom: 1px solid #eaeaea;
+  font-weight: normal;
+  color: gray;
+  & > div > b {
+    color: #20c997;
   }
+
   @media (max-width: 990px) {
     width: 75%;
     margin: 0 auto;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
   }
   @media (max-width: 430px) {
     gap: 10px;
@@ -105,17 +107,106 @@ const RightContent = styled(motion.div)`
 `;
 const LeftHeader = styled.h4`
   font-size: 28px;
+  font-family: Arial, Helvetica, sans-serif;
 `;
 
 const Desc = styled.p`
   line-height: 2;
+  color: gray;
+  font-size: 17px;
+  & > b {
+    font-weight: bold;
+  }
   @media (max-width: 430px) {
     line-height: 1.4;
     width: 100%;
     text-align: center;
   }
 `;
+const shake = keyframes`
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(1deg); /* 미세하게 흔들림 */
+  }
+  50% {
+    transform: rotate(-1deg); /* 반대 방향으로 미세하게 흔들림 */
+  }
+  75% {
+    transform: rotate(0.5deg); /* 마지막 흔들림 */
+  }
+`;
 
+const CardContainer = styled.div<CardContainerProps>`
+  perspective: 1000px;
+  width: 300px;
+  height: 400px;
+  cursor: pointer;
+  border-radius: 10px;
+  transform-style: preserve-3d;
+  position: relative;
+  transition: transform 0.6s ease-in-out; /* 회전 애니메이션 복구 */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+
+  /* 클릭 시 카드 회전 */
+  transform: ${(props) =>
+    props.isFlipped ? "rotateY(180deg)" : "rotateY(0deg)"};
+`;
+
+const Card = styled(motion.div)`
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  transform-style: preserve-3d;
+`;
+
+const CardFront = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden; /* 뒷면이 보이지 않도록 설정 */
+  border-radius: 10px;
+  overflow: hidden;
+  object-fit: contain;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &:hover {
+    animation: ${shake} 1s ease-in-out;
+  }
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+`;
+const CardBack = styled.div`
+  opacity: 0.8;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  background: #20c997;
+  border-radius: 10px;
+  transform: rotateY(180deg); /* 뒷면을 180도 회전 */
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  padding: 20px;
+  gap: 10px;
+
+  & > div > b {
+    color: #fff;
+  }
+  & > div {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+`;
 // Motion Variants
 const containerVariants = {
   hidden: {},
@@ -149,9 +240,16 @@ const rightContentVariants = {
   },
 };
 
-const About = () => {
+interface CardContainerProps {
+  isFlipped: boolean;
+}
+
+const About = ({ isDarkMode }: { isDarkMode: boolean }) => {
+  const [isFlipped, setIsFlipped] = useState(false);
+
   return (
     <Wrapper
+      isDarkMode={isDarkMode}
       variants={containerVariants}
       initial="hidden"
       whileInView="visible"
@@ -160,28 +258,42 @@ const About = () => {
       <Header variants={itemVariants}>About Me</Header>
       <Content>
         <LeftContent variants={leftContentVariants}>
-          <LeftHeader>안녕하세요.</LeftHeader>
+          <LeftHeader>안녕하세요!</LeftHeader>
           <Desc>
-            저는 끊임없이 배우며 성장하는 프론트엔드 개발자입니다. 사용자 경험을
-            중시하고, 직관적이고 세련된 인터페이스 구현에 열정을 갖고 있습니다.
-            변화하는 기술에 발맞춰 도전하며, 창의적이고 집요한 노력으로 문제를
-            해결해 나가고자 합니다. 앞으로도 더 나은 코드를 작성하며 성장해
-            나가겠습니다.
+            저는 끊임없이 배우며 성장하는
+            <b> 프론트엔드 개발자 백준혁</b>입니다.
+            <br />
+            사용자 경험을 중시하고, 직관적이고 세련된 인터페이스 구현에 열정을
+            갖고 있습니다. 변화하는 기술에 발맞춰 도전하며, 창의적이고 집요한
+            노력으로 문제를 해결해 나가고자 합니다. 앞으로도 더 나은 코드를
+            작성하며 성장해 나가겠습니다.
           </Desc>
         </LeftContent>
         <RightContent variants={rightContentVariants}>
-          <div>
-            <b>Name</b> : 백준혁
-          </div>
-          <div>
-            <b>Email</b> : wnsgur1832@naver.com
-          </div>
-          <div>
-            <b>Age</b> : 28
-          </div>
-          <div>
-            <b>From</b> : Hwaseong-si
-          </div>
+          <CardContainer
+            isFlipped={isFlipped}
+            onClick={() => setIsFlipped((prev) => !prev)}
+          >
+            <Card>
+              <CardFront>
+                <img src="/img/파이리.jfif" alt="Profile" />
+              </CardFront>
+              <CardBack>
+                <div>
+                  <b>Name</b> : 백준혁
+                </div>
+                <div>
+                  <b>Email</b> : wnsgur1832@naver.com
+                </div>
+                <div>
+                  <b>Age</b> : 1997 . 05 . 15 (28)
+                </div>
+                <div>
+                  <b>From</b> : Hwaseong-si
+                </div>
+              </CardBack>
+            </Card>
+          </CardContainer>
         </RightContent>
       </Content>
     </Wrapper>
