@@ -7,14 +7,15 @@ import { CardData } from "../types";
 import { motion } from "framer-motion";
 import data from "../WhatIDo.json";
 
-const Wrapper = styled(motion.div)`
+const Wrapper = styled(motion.main)<{ isDarkMode: boolean }>`
   width: 100%;
   height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: #f8f9fa;
+  transition: all 0.3s;
+  background: ${(props) => (props.isDarkMode ? "#202124  " : "#f8f9fa")};
   @media (max-width: 990px) {
     width: 100%;
     height: 100%;
@@ -42,7 +43,7 @@ const Header = styled(motion.div)`
     transform: translate(-50%, -50%);
     font-size: 130px;
     font-weight: bold;
-    color: #dee3e4;
+    color: #ddd;
     z-index: -1;
     @media (max-width: 990px) {
       font-size: 120px;
@@ -215,7 +216,7 @@ const cardVariants = {
   },
 };
 
-const WhatIDo: React.FC = () => {
+const WhatIDo = ({ isDarkMode }: { isDarkMode: boolean }) => {
   const chunkedData = [];
   for (let i = 0; i < data.length; i += 6) {
     chunkedData.push(data.slice(i, i + 6)); // 6개씩 분리
@@ -233,6 +234,7 @@ const WhatIDo: React.FC = () => {
 
   return (
     <Wrapper
+      isDarkMode={isDarkMode}
       variants={wrapperVariants}
       initial="hidden"
       whileInView="visible"

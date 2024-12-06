@@ -34,7 +34,7 @@ const GlobalStyle = createGlobalStyle<{ isDarkMode: boolean }>`
 }
 body {
     font-family: 'Pretendard', sans-serif;
-    background-color: ${(props) =>
+    background: ${(props) =>
       props.isDarkMode ? "#121212" : "#ffffff"};  /* 다크모드 배경 */
     color: ${(props) =>
       props.isDarkMode ? "#ffffff" : "#121212"}; /* 다크모드 텍스트 색상 */
@@ -89,13 +89,14 @@ const ModeToggleButton = styled.button<{ isDarkMode: boolean }>`
   position: fixed;
   top: 20px;
   right: 20px;
-  background: transparent;
+
   border: none;
   cursor: pointer;
-  font-size: 24px;
+  font-size: 36px;
   color: ${(props) => (props.isDarkMode ? "#fff" : "#000")};
+  background: transparent;
   transition: color 0.3s;
-  z-index: 2;
+  z-index: 3;
   &:hover {
     opacity: 0.7;
   }
@@ -155,13 +156,13 @@ const App = () => {
           <Main />
         </Section>
         <Section id="about">
-          <About isDarkMode={false} />
+          <About isDarkMode={isDarkMode} />
         </Section>
         <Section id="whatido">
-          <WhatIDo />
+          <WhatIDo isDarkMode={isDarkMode} />
         </Section>
         <Section id="resume">
-          <Resume />
+          <Resume isDarkMode={isDarkMode} />
         </Section>
         <Section id="project">
           <Project />

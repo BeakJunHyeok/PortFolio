@@ -2,14 +2,15 @@ import React from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 
-const Wrapper = styled(motion.main)`
+const Wrapper = styled(motion.main)<{ isDarkMode: boolean }>`
   width: 100%;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: #fff;
+  transition: all 0.3s;
+  background: ${(props) => (props.isDarkMode ? "#2E2E2E " : "#fff")};
   padding: 20px;
   gap: 20px;
   box-sizing: border-box;
@@ -37,7 +38,7 @@ const Header = styled(motion.h1)`
     transform: translate(-50%, -50%);
     font-size: 120px;
     font-weight: bold;
-    color: #dee3e4;
+    color: #ddd;
     z-index: -1;
     @media (max-width: 990px) {
       font-size: 80px;
@@ -76,7 +77,7 @@ const Cards = styled(motion.div)`
   gap: 20px;
 `;
 
-const Card = styled(motion.div)`
+const Card = styled(motion.div)<{ isDarkMode: boolean }>`
   width: 100%;
   border: 1px solid #dee2e6;
   border-radius: 6px;
@@ -84,7 +85,7 @@ const Card = styled(motion.div)`
   display: flex;
   flex-direction: column;
   gap: 8px;
-  background: #fff;
+  background: ${(props) => (props.isDarkMode ? "#2E2E2E " : "#fff")};
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: all 0.3s;
   @media (max-width: 580px) {
@@ -154,9 +155,10 @@ const cardVariants = {
   },
 };
 
-const Resume = () => {
+const Resume = ({ isDarkMode }: { isDarkMode: boolean }) => {
   return (
     <Wrapper
+      isDarkMode={isDarkMode}
       variants={wrapperVariants}
       initial="hidden"
       whileInView="visible"
@@ -167,7 +169,7 @@ const Resume = () => {
         <Content>
           <Title>My Education</Title>
           <Cards>
-            <Card variants={cardVariants}>
+            <Card isDarkMode={isDarkMode} variants={cardVariants}>
               <Date>2013 - 2016</Date>
               <Name>운천고등학교</Name>
               <SubName>고등학교 과정</SubName>
@@ -176,7 +178,7 @@ const Resume = () => {
                 사고와 문제 해결 능력을 키웠습니다.
               </div>
             </Card>
-            <Card variants={cardVariants}>
+            <Card isDarkMode={isDarkMode} variants={cardVariants}>
               <Date>2016 - 2023</Date>
               <Name>평택대학교</Name>
               <SubName>데이터정보학과</SubName>
@@ -185,7 +187,7 @@ const Resume = () => {
                 프로그래밍과 데이터 분석 기법을 익혔습니다.
               </div>
             </Card>
-            <Card variants={cardVariants}>
+            <Card isDarkMode={isDarkMode} variants={cardVariants}>
               <Date>2024 - 2024</Date>
               <Name>K-Digital Training (KDT)</Name>
               <SubName>기업연계 프론트엔드 개발 수료</SubName>
@@ -199,7 +201,7 @@ const Resume = () => {
         <Content variants={contentVariants}>
           <Title>TeamProject</Title>
           <Cards>
-            <Card variants={cardVariants}>
+            <Card isDarkMode={isDarkMode} variants={cardVariants}>
               <Date>2024 - 2024</Date>
               <Name>AliExpress</Name>
               <SubName>Frontend</SubName>
@@ -208,7 +210,7 @@ const Resume = () => {
                 distinctio animi.
               </div>
             </Card>
-            <Card variants={cardVariants}>
+            <Card isDarkMode={isDarkMode} variants={cardVariants}>
               <Date>2024 - 2024</Date>
               <Name>Thread</Name>
               <SubName>Frontend</SubName>
@@ -217,7 +219,7 @@ const Resume = () => {
                 distinctio animi.
               </div>
             </Card>
-            <Card variants={cardVariants}>
+            <Card isDarkMode={isDarkMode} variants={cardVariants}>
               <Date>2024 - 2024</Date>
               <Name>Viva Play</Name>
               <SubName>Frontend</SubName>

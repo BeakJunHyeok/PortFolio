@@ -22,11 +22,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/whatido",
-        element: <WhatIDo />,
+        element: <WhatIDo isDarkMode={false} />,
       },
       {
         path: "/resume",
-        element: <Resume />,
+        element: <Resume isDarkMode={false} />,
       },
       {
         path: "/project",

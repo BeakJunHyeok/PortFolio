@@ -9,7 +9,8 @@ const Wrapper = styled(motion.main)<{ isDarkMode: boolean }>`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: ${(props) => (props.isDarkMode ? "#121212" : "#fff")};
+  transition: all 0.3s;
+  background: ${(props) => (props.isDarkMode ? "#2E2E2E " : "#fff")};
   @media (max-width: 990px) {
     width: 100%;
     height: 100%;
@@ -37,7 +38,7 @@ const Header = styled(motion.div)`
     transform: translate(-50%, -50%);
     font-size: 130px;
     font-weight: bold;
-    color: #dee3e4;
+    color: #ddd;
     z-index: -1;
     @media (max-width: 990px) {
       font-size: 80px;
