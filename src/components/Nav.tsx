@@ -98,7 +98,7 @@ const Nav: React.FC<NavProps> = ({ activeSection }) => {
   ];
 
   const activeIndex = menuItems.findIndex((menu) => menu.id === activeSection);
-  const originalImage = "/img/파이리.jfif";
+  const originalImage = "/img/profile.jpg";
   const changeImage = "/img/꼬북이.jfif";
 
   const [isRotating, setIsRotating] = useState(false);

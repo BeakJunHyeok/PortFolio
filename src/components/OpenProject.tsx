@@ -64,6 +64,7 @@ const Title = styled.div`
 
 const Contents = styled.div`
   width: 100%;
+  height: 90%;
   display: flex;
   gap: 40px;
   @media (max-width: 699px) {
@@ -82,7 +83,7 @@ const StyledSlider = styled(Slider)`
   max-width: 1200px;
   cursor: pointer;
   .slick-dots {
-    bottom: 10px;
+    bottom: -30px;
   }
 
   .slick-dots li button:before {
@@ -113,7 +114,7 @@ const StyledSlider = styled(Slider)`
 
 const ImgBox = styled.div`
   width: 50%;
-  height: 600px;
+  height: 100%;
   overflow: hidden;
   border-radius: 8px;
   @media (max-width: 699px) {
@@ -128,7 +129,7 @@ const ImgBox = styled.div`
 
 const Img = styled.img`
   width: 100%;
-  height: 550px;
+  height: 100%;
   object-fit: contain;
   border-radius: 8px;
   @media (max-width: 699px) {
@@ -169,7 +170,8 @@ const Name = styled.div`
 `;
 
 const Desc = styled.div`
-  font-size: 18px;
+  font-size: 16px;
+  line-height: 1.6;
   font-weight: normal;
 
   @media (max-width: 699px) {

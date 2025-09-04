@@ -2,18 +2,19 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 
-const Wrapper = styled(motion.main)`
+const Wrapper = styled(motion.main)<{ isDarkMode: boolean }>`
   width: 100%;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: #fff;
+  background: ${({ isDarkMode }) => (isDarkMode ? "#2E2E2E" : "#fff")};
   gap: 20px;
+  transition: background 0.3s ease;
 `;
 
-const Header = styled(motion.h1)`
+const Header = styled(motion.h1)<{ isDarkMode: boolean }>`
   margin: 50px 0;
   width: 100%;
   font-size: 40px;
@@ -23,6 +24,8 @@ const Header = styled(motion.h1)`
   text-align: center;
   position: relative;
   z-index: 2;
+  color: ${({ isDarkMode }) => (isDarkMode ? "#fff" : "#000")};
+
   &::before {
     content: "Contact";
     position: absolute;
@@ -32,7 +35,7 @@ const Header = styled(motion.h1)`
     transform: translate(-50%, -50%);
     font-size: 120px;
     font-weight: bold;
-    color: #dee3e4;
+    color: ${({ isDarkMode }) => (isDarkMode ? "#555" : "#dee3e4")};
     z-index: -1;
     @media (max-width: 990px) {
       font-size: 80px;
@@ -48,7 +51,7 @@ const Content = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 40px;
+  gap: 36px;
   @media (max-width: 835px) {
     flex-direction: column;
     gap: 50px;
@@ -70,24 +73,16 @@ const Form = styled(motion.form)`
     "phone"
     "textarea"
     "submit";
-  @media (max-width: 430px) {
-    grid-template-columns: 1fr;
-    grid-template-areas:
-      "name"
-      "email"
-      "phone"
-      "textarea"
-      "submit";
-  }
 `;
 
-const Input = styled.input`
-  width: 400px;
+const Input = styled.input<{ isDarkMode: boolean }>`
+  width: 100%;
   height: 40px;
   border-radius: 8px;
   border: 1px solid #22272c;
   font-size: 14px;
-  color: #757575;
+  color: ${({ isDarkMode }) => (isDarkMode ? "#ddd" : "#757575")};
+  background-color: ${({ isDarkMode }) => (isDarkMode ? "#444" : "#fff")};
   padding-left: 10px;
   &:focus {
     outline: none;
@@ -109,7 +104,7 @@ const Phone = styled(Input)`
   grid-area: phone;
 `;
 
-const Textarea = styled.textarea`
+const Textarea = styled.textarea<{ isDarkMode: boolean }>`
   grid-area: textarea;
   resize: none;
   width: 100%;
@@ -117,7 +112,8 @@ const Textarea = styled.textarea`
   border: 1px solid #22272c;
   border-radius: 8px;
   font-size: 14px;
-  color: #757575;
+  color: ${({ isDarkMode }) => (isDarkMode ? "#ddd" : "#757575")};
+  background-color: ${({ isDarkMode }) => (isDarkMode ? "#444" : "#fff")};
   padding: 10px;
   &::placeholder {
     font-family: "Pretendard", sans-serif;
@@ -170,19 +166,22 @@ const Card = styled.div`
   cursor: pointer;
 `;
 
+const Adrres = styled.div<{ isDarkMode: boolean }>`
+  font-size: 20px;
+  font-weight: bold;
+  font-family: "Spoqa Han Sans Neo", "sans-serif";
+  line-height: 1.6;
+  transition: all 0.3s;
+  color: ${({ isDarkMode }) => (isDarkMode ? "#eee" : "#333333")};
+  &:hover {
+    color: #20c997;
+  }
+`;
+
 const IconImg = styled.img`
   width: 50px;
   height: 50px;
   border-radius: 50%;
-`;
-
-const Adrres = styled.div`
-  font-size: 16px;
-  font-weight: bold;
-  transition: all 0.3s;
-  &:hover {
-    color: #20c997;
-  }
 `;
 
 const containerVariants = {
@@ -221,7 +220,11 @@ const informationVariants = {
   },
 };
 
-const Contact = () => {
+interface ContactProps {
+  isDarkMode: boolean;
+}
+
+const Contact = ({ isDarkMode }: ContactProps) => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 430);
 
   useEffect(() => {
@@ -232,36 +235,31 @@ const Contact = () => {
 
   return (
     <Wrapper
+      isDarkMode={isDarkMode}
       variants={containerVariants}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.3 }}
     >
-      <Header variants={headerVariants}>Contact</Header>
+      <Header variants={headerVariants} isDarkMode={isDarkMode}>
+        Contact
+      </Header>
       <Content>
         <Form variants={formVariants}>
-          <Name placeholder="Name" />
-          <Email placeholder="Email address" />
-          <Phone placeholder="Phone number" />
-          <Textarea placeholder="Message" />
+          <Name placeholder="Name" isDarkMode={isDarkMode} />
+          <Email placeholder="Email address" isDarkMode={isDarkMode} />
+          <Phone placeholder="Phone number" isDarkMode={isDarkMode} />
+          <Textarea placeholder="Message" isDarkMode={isDarkMode} />
           <Submit>Send Message</Submit>
         </Form>
         <Information variants={informationVariants}>
           <Card>
-            <Adrres>저의 포트폴리오를 읽어주셔서 감사합니다.</Adrres>
+            <Adrres isDarkMode={isDarkMode}>
+              제 포트폴리오를 봐주셔서 감사합니다. <br />
+              작은 기회도 소중히 여기며, 배움에 열린 자세로 꾸준히 성장해 팀에
+              보탬이 되는 개발자가 되겠습니다.
+            </Adrres>
           </Card>
-          {/* <Card>
-            <IconImg src="/img/Github-Dark.svg"></IconImg>
-            <Adrres>https://github.com/BeakJunHyeok</Adrres>
-          </Card>
-          <Card>
-            <IconImg src="/img/꼬북이.jfif"></IconImg>
-            <Adrres>wnsgur1832@naver.com</Adrres>
-          </Card>
-          <Card>
-            <IconImg src="/img/꼬북이.jfif"></IconImg>
-            <Adrres>Hwaseong-si, Gyeonggi-do</Adrres>
-          </Card> */}
         </Information>
       </Content>
     </Wrapper>

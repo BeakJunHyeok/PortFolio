@@ -141,7 +141,7 @@ const shake = keyframes`
 
 const CardContainer = styled.div<CardContainerProps>`
   perspective: 1000px;
-  width: 300px;
+  width: 320px;
   height: 400px;
   cursor: pointer;
   border-radius: 10px;
@@ -261,13 +261,17 @@ const About = ({ isDarkMode }: { isDarkMode: boolean }) => {
         <LeftContent variants={leftContentVariants}>
           <LeftHeader>안녕하세요!</LeftHeader>
           <Desc>
-            저는 끊임없이 배우며 성장하는
+            저는 끊임없이 배우며 성장하고 싶은
             <b> 프론트엔드 개발자 백준혁</b>입니다.
             <br />
-            사용자 경험을 중시하고, 직관적이고 세련된 인터페이스 구현에 열정을
-            갖고 있습니다. 변화하는 기술에 발맞춰 도전하며, 창의적이고 집요한
-            노력으로 문제를 해결해 나가고자 합니다. 앞으로도 더 나은 코드를
-            작성하며 성장해 나가겠습니다.
+            사용자가 편리하게 느낄 수 있는 직관적인 인터페이스를 만들고, 작은
+            부분에서도 만족감을 줄 수 있는 경험을 고민하는 걸 좋아합니다. 아직
+            배울 게 많다고 생각하기 때문에 새로운 기술을 접하면 직접 해보면서
+            익히고, 부족한 부분은 꾸준히 채워나가고 있습니다. 단순히 기능을
+            구현하는 데 그치지 않고 더 나은 방법이 없는지 끊임없이 고민하며,
+            문제를 끝까지 해결해내는 집요함으로 성장하고 싶습니다. 앞으로도
+            배우는 과정을 즐기며 더 좋은 코드를 작성하고, 성장하는 개발자가
+            되겠습니다.
           </Desc>
         </LeftContent>
         <RightContent variants={rightContentVariants}>
@@ -277,7 +281,7 @@ const About = ({ isDarkMode }: { isDarkMode: boolean }) => {
           >
             <Card>
               <CardFront>
-                <img src="/img/파이리.jfif" alt="Profile" />
+                <img src="/img/profile.jpg" alt="Profile" />
               </CardFront>
               <CardBack>
                 <div>
@@ -287,7 +291,7 @@ const About = ({ isDarkMode }: { isDarkMode: boolean }) => {
                   <b>Email</b> : wnsgur1832@naver.com
                 </div>
                 <div>
-                  <b>Age</b> : 1997 . 05 . 15 (28)
+                  <b>Age</b> : 1997 . 05 . 15 (29)
                 </div>
                 <div>
                   <b>From</b> : Hwaseong-si

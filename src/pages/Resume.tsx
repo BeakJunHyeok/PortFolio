@@ -85,15 +85,18 @@ const Card = styled(motion.div)<{ isDarkMode: boolean }>`
   display: flex;
   flex-direction: column;
   gap: 8px;
-  background: ${(props) => (props.isDarkMode ? "#2E2E2E " : "#fff")};
+  background: ${(props) => (props.isDarkMode ? "#2E2E2E" : "#fff")};
+  color: ${(props) => (props.isDarkMode ? "#fff" : "#000")};
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: all 0.3s;
+
   @media (max-width: 580px) {
     padding: 15px;
   }
+
   &:hover {
-    background: #ddd;
-    /* color: */
+    background: ${(props) => (props.isDarkMode ? "#3B3B55" : "#ddd")};
+    color: ${(props) => (props.isDarkMode ? "#fff" : "#000")};
   }
 `;
 
@@ -206,8 +209,8 @@ const Resume = ({ isDarkMode }: { isDarkMode: boolean }) => {
               <Name>AliExpress</Name>
               <SubName>Frontend</SubName>
               <div>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro
-                distinctio animi.
+                실제 이커머스 플랫폼을 클론코딩하며 반응형 레이아웃과 다양한 UI
+                컴포넌트를 구현, 쇼핑몰 서비스 전반의 구조를 경험했습니다.
               </div>
             </Card>
             <Card isDarkMode={isDarkMode} variants={cardVariants}>
@@ -215,8 +218,8 @@ const Resume = ({ isDarkMode }: { isDarkMode: boolean }) => {
               <Name>Thread</Name>
               <SubName>Frontend</SubName>
               <div>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro
-                distinctio animi.
+                SNS 서비스 클론코딩을 통해 글 작성, 피드, 프로필 관리 등의
+                기능을 직접 구현하며 상태 관리와 사용자 인터랙션을 학습했습니다.
               </div>
             </Card>
             <Card isDarkMode={isDarkMode} variants={cardVariants}>
@@ -224,8 +227,9 @@ const Resume = ({ isDarkMode }: { isDarkMode: boolean }) => {
               <Name>Viva Play</Name>
               <SubName>Frontend</SubName>
               <div>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro
-                distinctio animi.
+                미디어 스트리밍 플랫폼을 참고해 콘텐츠 리스트와 반응형 UI를
+                구현, 애니메이션과 레이아웃 설계를 통해 몰입감 있는 사용자
+                경험을 연습했습니다.
               </div>
             </Card>
           </Cards>

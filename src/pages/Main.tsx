@@ -153,9 +153,7 @@ const Main = () => {
         >
           {displayedText}
         </Introduce>
-        <Location>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit.{" "}
-        </Location>
+        <Location>안녕하세요 프론트엔드 개발자 백준혁입니다. </Location>
         <Button onClick={() => handleScroll("contact")}>Hire Me</Button>
       </Contents>
       <ScrollIcon onClick={() => handleScroll("about")}>

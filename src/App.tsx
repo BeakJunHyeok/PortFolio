@@ -32,6 +32,7 @@ const GlobalStyle = createGlobalStyle<{ isDarkMode: boolean }>`
     font-weight: 400;
     font-style: normal;
 }
+ @import url('https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css');
 body {
     font-family: 'Pretendard', sans-serif;
     background: ${(props) =>
@@ -85,18 +86,23 @@ const ScrollToTopButton = styled.button<{ isVisible: boolean }>`
   }
 `;
 
-const ModeToggleButton = styled.button<{ isDarkMode: boolean }>`
+const ModeToggleButton = styled.button<{
+  isDarkMode: boolean;
+  isVisible: boolean;
+}>`
   position: fixed;
   top: 20px;
   right: 20px;
-
   border: none;
   cursor: pointer;
   font-size: 36px;
   color: ${(props) => (props.isDarkMode ? "#fff" : "#000")};
   background: transparent;
-  transition: color 0.3s;
+  transition: color 0.3s, opacity 0.3s;
+  opacity: ${(props) => (props.isVisible ? 1 : 0)};
+  pointer-events: ${(props) => (props.isVisible ? "auto" : "none")};
   z-index: 3;
+
   &:hover {
     opacity: 0.7;
   }
@@ -168,12 +174,16 @@ const App = () => {
           <Project />
         </Section>
         <Section id="contact">
-          <Contact />
+          <Contact isDarkMode={isDarkMode} />
         </Section>
         <ScrollToTopButton isVisible={showScrollButton} onClick={scrollToTop}>
           <FontAwesomeIcon icon={faArrowUp} />
         </ScrollToTopButton>
-        <ModeToggleButton onClick={toggleDarkMode} isDarkMode={isDarkMode}>
+        <ModeToggleButton
+          onClick={toggleDarkMode}
+          isDarkMode={isDarkMode}
+          isVisible={showScrollButton} // 여기에 적용!
+        >
           <FontAwesomeIcon icon={isDarkMode ? faSun : faMoon} />
         </ModeToggleButton>
       </MainContent>

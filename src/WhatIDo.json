@@ -103,8 +103,8 @@
   },
   {
     "id": 18,
-    "image": "/img/파이리.jfif",
-    "name": "ddddd",
-    "desc": "HTML is the standard markup language for creating Web pages."
+    "image": "/img/github.png",
+    "name": "GitHub",
+    "desc": "프로젝트 버전 관리와 협업에 GitHub를 적극적으로 활용하며, 브랜치 관리, 이슈 트래킹, Pull Request 리뷰 등 다양한 기능을 경험했습니다."
   }
 ]
