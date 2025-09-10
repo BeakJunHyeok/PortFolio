@@ -35,11 +35,9 @@ const GlobalStyle = createGlobalStyle<{ isDarkMode: boolean }>`
  @import url('https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css');
 body {
     font-family: 'Pretendard', sans-serif;
-    background: ${(props) =>
-      props.isDarkMode ? "#121212" : "#ffffff"};  /* 다크모드 배경 */
-    color: ${(props) =>
-      props.isDarkMode ? "#ffffff" : "#121212"}; /* 다크모드 텍스트 색상 */
-    transition: background-color 0.3s, color 0.3s; /* 부드러운 전환 효과 */
+    background: ${(props) => (props.isDarkMode ? "#121212" : "#ffffff")};  
+    color: ${(props) => (props.isDarkMode ? "#ffffff" : "#121212")}; 
+    transition: background-color 0.3s, color 0.3s; 
   }
 `;
 
@@ -47,13 +45,13 @@ const NavWrapper = styled.div`
   display: flex;
   width: 100%;
 `;
-const Section = styled.section``;
+const Section = styled.section.attrs({ className: "app-section" })``;
+
 const MainContent = styled.main<{ isDarkMode: boolean }>`
   width: calc(100% - 260px);
   margin-left: 260px;
   overflow-x: hidden;
-  background-color: ${(props) =>
-    props.isDarkMode ? "#121212" : "#ffffff"}; /* 다크모드 배경색 */
+  background-color: ${(props) => (props.isDarkMode ? "#121212" : "#ffffff")};
 
   @media (max-width: 990px) {
     width: 100%;
@@ -67,22 +65,48 @@ const ScrollToTopButton = styled.button<{ isVisible: boolean }>`
   right: 10px;
   width: 44px;
   height: 44px;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: #20c997;
   color: #fff;
   border: none;
   border-radius: 50%;
   cursor: pointer;
-  display: flex;
+  display: inline-flex;
   justify-content: center;
   align-items: center;
   font-size: 18px;
-  transition: opacity 0.3s;
-  opacity: ${(props: { isVisible: boolean }) => (props.isVisible ? 1 : 0)};
-  pointer-events: ${(props: { isVisible: boolean }) =>
-    props.isVisible ? "auto" : "none"};
+  transition: opacity 0.2s, transform 0.2s, box-shadow 0.25s;
+  opacity: ${(p) => (p.isVisible ? 1 : 0)};
+  pointer-events: ${(p) => (p.isVisible ? "auto" : "none")};
+  z-index: 1003;
 
   &:hover {
-    background-color: #20c997;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+  }
+
+  @media (max-width: 990px) {
+    right: calc(env(safe-area-inset-right, 0) + 16px);
+    bottom: calc(env(safe-area-inset-bottom, 0) + 16px + 48px + 10px);
+
+    width: 48px;
+    height: 48px;
+    font-size: 17px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.16);
+
+    animation: gentle-float 2.2s ease-in-out infinite alternate;
+
+    &:hover {
+      transform: translateY(-2px);
+    }
+  }
+
+  @keyframes gentle-float {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(-2px);
+    }
   }
 `;
 
@@ -111,34 +135,39 @@ const ModeToggleButton = styled.button<{
 const App = () => {
   const [activeSection, setActiveSection] = useState<string>("main");
   const [showScrollButton, setShowScrollButton] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(false); // 다크모드 상태
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
   useEffect(() => {
-    const sections = document.querySelectorAll("section");
-    const observerOptions = {
-      root: null,
-      threshold: 0.5, // 60% 이상 보이면 활성화
-    };
+    const sections = Array.from(
+      document.querySelectorAll<HTMLElement>(".app-section")
+    );
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setActiveSection(entry.target.id);
+    const chooseActive = () => {
+      const viewportAnchor = window.innerHeight * 0.33;
+      let candidateId = sections[0]?.id || "main";
+      let bestDelta = Number.POSITIVE_INFINITY;
 
-          // About 섹션부터 버튼 표시
-          if (entry.target.id === "about") {
-            setShowScrollButton(true);
-          } else if (entry.target.id === "main") {
-            setShowScrollButton(false);
+      sections.forEach((sec) => {
+        const rect = sec.getBoundingClientRect();
+        if (rect.bottom > 0 && rect.top < window.innerHeight) {
+          const delta = Math.abs(rect.top - viewportAnchor);
+          if (delta < bestDelta) {
+            bestDelta = delta;
+            candidateId = sec.id;
           }
         }
       });
-    }, observerOptions);
 
-    sections.forEach((section) => observer.observe(section));
+      setActiveSection(candidateId);
+      setShowScrollButton(candidateId !== "main");
+    };
 
+    chooseActive();
+    window.addEventListener("scroll", chooseActive, { passive: true });
+    window.addEventListener("resize", chooseActive);
     return () => {
-      sections.forEach((section) => observer.unobserve(section));
+      window.removeEventListener("scroll", chooseActive);
+      window.removeEventListener("resize", chooseActive);
     };
   }, []);
 
@@ -150,7 +179,7 @@ const App = () => {
   };
 
   const toggleDarkMode = () => {
-    setIsDarkMode((prevMode) => !prevMode); // 다크 모드 상태 전환
+    setIsDarkMode((prevMode) => !prevMode);
   };
 
   return (
@@ -182,7 +211,7 @@ const App = () => {
         <ModeToggleButton
           onClick={toggleDarkMode}
           isDarkMode={isDarkMode}
-          isVisible={showScrollButton} // 여기에 적용!
+          isVisible={showScrollButton}
         >
           <FontAwesomeIcon icon={isDarkMode ? faSun : faMoon} />
         </ModeToggleButton>
