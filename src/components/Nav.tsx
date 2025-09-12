@@ -25,8 +25,6 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 20px 0;
-  top: 0;
-  left: 0;
 
   @media (max-width: 990px) {
     display: none;
@@ -76,6 +74,7 @@ const NavItem = styled.li<{ isActive: boolean }>`
   cursor: pointer;
   color: ${(props) => (props.isActive ? "#fff" : "#000")};
   transition: all 0.3s ease;
+
   &:hover {
     color: #fff;
   }
@@ -83,16 +82,22 @@ const NavItem = styled.li<{ isActive: boolean }>`
 
 const BackgroundHighlight = styled(motion.div)`
   position: absolute;
-  inset: 0;
-  margin: 0 5%;
+  height: 42px;
+  width: 90%;
   background-color: #20c997;
   border-radius: 8px;
   z-index: 1;
+  transition: background-color 0.3s ease;
+`;
+
+const Icons = styled.div`
+  display: flex;
+  gap: 8px;
+  cursor: pointer;
 `;
 
 const MobileOnly = styled.div`
   display: none;
-
   @media (max-width: 990px) {
     display: block;
   }
@@ -100,8 +105,8 @@ const MobileOnly = styled.div`
 
 const FabButton = styled.button`
   position: fixed;
-  right: 16px;
-  bottom: 16px;
+  right: calc(env(safe-area-inset-right, 0) + 16px);
+  bottom: calc(env(safe-area-inset-bottom, 0) + 16px);
   width: 48px;
   height: 48px;
   border: none;
@@ -120,7 +125,8 @@ const FabButton = styled.button`
 const SheetBackdrop = styled(motion.div)`
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.35);
+  background: rgba(0, 0, 0, 0);
+  pointer-events: none;
   z-index: 1000;
 `;
 
@@ -135,6 +141,10 @@ const Sheet = styled(motion.nav)`
   border-top-right-radius: 16px;
   padding: 16px 14px 24px;
   z-index: 1001;
+
+  max-height: min(80vh, 560px);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 `;
 
 const SheetHandle = styled.div`
@@ -165,12 +175,6 @@ const MobileMenuButton = styled.button<{ active?: boolean }>`
   cursor: pointer;
 `;
 
-const Icons = styled.div`
-  display: flex;
-  gap: 8px;
-  cursor: pointer;
-`;
-
 const Nav: React.FC<NavProps> = ({ activeSection }) => {
   const activeIndex = menuItems.findIndex((menu) => menu.id === activeSection);
   const originalImage = "/img/profile.jpg";
@@ -179,6 +183,7 @@ const Nav: React.FC<NavProps> = ({ activeSection }) => {
   const [isRotating, setIsRotating] = useState(false);
   const [isOriginalImage, setIsOriginalImage] = useState(true);
   const [hoverIndex, setHoverIndex] = useState<number | null>(null);
+  const [open, setOpen] = useState(false);
 
   const handleRotate = () => {
     setIsRotating(true);
@@ -188,17 +193,9 @@ const Nav: React.FC<NavProps> = ({ activeSection }) => {
     }, 1000);
   };
 
-  const [open, setOpen] = useState(false);
-
   useEffect(() => {
-    if (open) {
-      const prev = document.body.style.overflow;
-      document.body.style.overflow = "hidden";
-      return () => {
-        document.body.style.overflow = prev;
-      };
-    }
-  }, [open]);
+    document.body.style.overflow = "";
+  }, []);
 
   const scrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
@@ -212,14 +209,10 @@ const Nav: React.FC<NavProps> = ({ activeSection }) => {
     },
     exit: { y: "100%", transition: { duration: 0.2 } },
   };
-
   const listVariants = {
     hidden: {},
-    visible: {
-      transition: { staggerChildren: 0.05, delayChildren: 0.05 },
-    },
+    visible: { transition: { staggerChildren: 0.05, delayChildren: 0.05 } },
   };
-
   const itemVariants = {
     hidden: { opacity: 0, y: 8 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.18 } },
@@ -242,14 +235,14 @@ const Nav: React.FC<NavProps> = ({ activeSection }) => {
         </Header>
 
         <Navbar>
-          {/* <BackgroundHighlight
+          <BackgroundHighlight
             layout
             initial={false}
             animate={{
               top: `${(hoverIndex !== null ? hoverIndex : activeIndex) * 50}px`,
             }}
             transition={{ type: "spring", stiffness: 200, damping: 30 }}
-          /> */}
+          />
           {menuItems.map((menu, index) => (
             <NavItem
               key={menu.id}
@@ -258,9 +251,6 @@ const Nav: React.FC<NavProps> = ({ activeSection }) => {
               onMouseLeave={() => setHoverIndex(null)}
               onClick={() => scrollTo(menu.id)}
             >
-              {activeSection === menu.id && (
-                <BackgroundHighlight layoutId="navHighlight" />
-              )}
               {menu.label}
             </NavItem>
           ))}
@@ -286,7 +276,6 @@ const Nav: React.FC<NavProps> = ({ activeSection }) => {
           {open && (
             <>
               <SheetBackdrop
-                onClick={() => setOpen(false)}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
